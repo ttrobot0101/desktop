@@ -44,7 +44,6 @@ class OWNCLOUDSYNC_EXPORT Theme : public QObject
     Q_PROPERTY(QUrl statusBusyImageSource READ statusBusyImageSource CONSTANT)
     Q_PROPERTY(QUrl statusInvisibleImageSource READ statusInvisibleImageSource CONSTANT)
 #ifndef TOKEN_AUTH_ONLY
-    Q_PROPERTY(QIcon folderDisabledIcon READ folderDisabledIcon CONSTANT)
     Q_PROPERTY(QIcon folderOfflineIcon READ folderOfflineIcon CONSTANT)
     Q_PROPERTY(QIcon applicationIcon READ applicationIcon CONSTANT)
 #endif
@@ -174,6 +173,22 @@ public:
     [[nodiscard]] QUrl folderOffline() const;
 
     /**
+     * @brief nneutral icons for in-app status
+     * @return QUrl full path to an icon
+     */
+    [[nodiscard]] QUrl offline() const;
+
+    [[nodiscard]] QUrl ok() const;
+
+    [[nodiscard]] QUrl error() const;
+
+    [[nodiscard]] QUrl sync() const;
+
+    [[nodiscard]] QUrl pause() const;
+
+    [[nodiscard]] QUrl warning() const;
+
+    /**
      * @brief configFileName
      * @return the name of the config file.
      */
@@ -190,8 +205,7 @@ public:
       * get an sync state icon
       */
     [[nodiscard]] QIcon syncStateIcon(SyncResult::Status, bool sysTray = false) const;
-
-    [[nodiscard]] QIcon folderDisabledIcon() const;
+    [[nodiscard]] QIcon folderStateIcon(SyncResult::Status) const;
     [[nodiscard]] QIcon folderOfflineIcon(bool sysTray = false) const;
     [[nodiscard]] QIcon applicationIcon() const;
 #endif

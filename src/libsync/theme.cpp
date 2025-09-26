@@ -203,6 +203,40 @@ QUrl Theme::folderOffline() const
     return imagePathToUrl(themeImagePath("state-offline"));
 }
 
+/*
+ * neutral icons for in-app status
+ */
+
+QUrl Theme::offline() const
+{
+    return imagePathToUrl(themeImagePath("offline"));
+}
+
+QUrl Theme::ok() const
+{
+    return imagePathToUrl(themeImagePath("ok"));
+}
+
+QUrl Theme::error() const
+{
+    return imagePathToUrl(themeImagePath("error"));
+}
+
+QUrl Theme::sync() const
+{
+    return imagePathToUrl(themeImagePath("sync"));
+}
+
+QUrl Theme::pause() const
+{
+    return imagePathToUrl(themeImagePath("pause"));
+}
+
+QUrl Theme::warning() const
+{
+    return imagePathToUrl(themeImagePath("warning"));
+}
+
 QString Theme::version() const
 {
     return MIRALL_VERSION_STRING;
@@ -280,7 +314,7 @@ QIcon Theme::themeIcon(const QString &name, bool sysTray) const
         }
     }
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     // This defines the icon as a template and enables automatic macOS color handling
     // See https://bugreports.qt.io/browse/QTBUG-42109
     cached.setIsMask(_mono && sysTray);
@@ -684,7 +718,6 @@ QIcon Theme::syncStateIcon(SyncResult::Status status, bool sysTray) const
         break;
     case SyncResult::Error:
     case SyncResult::SetupError:
-    // FIXME: Use state-problem once we have an icon.
     default:
         statusIcon = QLatin1String("state-error");
     }
@@ -692,9 +725,42 @@ QIcon Theme::syncStateIcon(SyncResult::Status status, bool sysTray) const
     return themeIcon(statusIcon, sysTray);
 }
 
-QIcon Theme::folderDisabledIcon() const
+// Neutral icons for the classic sync folder list
+
+QIcon Theme::folderStateIcon(SyncResult::Status status) const
 {
-    return themeIcon(QLatin1String("state-pause"));
+    // FIXME: Mind the size!
+    QString statusIcon;
+
+    switch (status) {
+    case SyncResult::Undefined:
+        // this can happen if no sync connections are configured.
+        statusIcon = QLatin1String("warning");
+        break;
+    case SyncResult::NotYetStarted:
+    case SyncResult::SyncRunning:
+        statusIcon = QLatin1String("sync");
+        break;
+    case SyncResult::SyncAbortRequested:
+    case SyncResult::Paused:
+        statusIcon = QLatin1String("pause");
+        break;
+    case SyncResult::SyncPrepare:
+    case SyncResult::Success:
+        statusIcon = QLatin1String("ok");
+        break;
+    case SyncResult::Problem:
+        statusIcon = QLatin1String("warning");
+        break;
+    case SyncResult::SetupError:
+        statusIcon = QLatin1String("offline");
+        break;
+    case SyncResult::Error:
+    default:
+        statusIcon = QLatin1String("error");
+    }
+
+    return themeIcon(statusIcon, false);
 }
 
 QIcon Theme::folderOfflineIcon(bool sysTray) const
