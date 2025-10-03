@@ -13,6 +13,7 @@
 #include "clientstatusreporting.h"
 #include "common/utility.h"
 #include "syncfileitem.h"
+#include "common/vfs.h"
 
 #include <QByteArray>
 #include <QUrl>
@@ -154,6 +155,12 @@ public:
     /** Server url of the account */
     void setUrl(const QUrl &url);
     [[nodiscard]] QUrl url() const { return _url; }
+    [[nodiscard]] QUrl publicShareLinkUrl() const;
+
+    [[nodiscard]] bool isPublicShareLink() const
+    {
+        return _isPublicLink;
+    }
 
     /// Adjusts _userVisibleUrl once the host to use is discovered.
     void setUserVisibleHost(const QString &host);
@@ -193,15 +200,19 @@ public:
      * sendRequest().
      */
     QNetworkReply *sendRawRequest(const QByteArray &verb,
-        const QUrl &url,
-        QNetworkRequest req = QNetworkRequest(),
-        QIODevice *data = nullptr);
+                                  const QUrl &url,
+                                  QNetworkRequest req = QNetworkRequest(),
+                                  QIODevice *data = nullptr);
 
     QNetworkReply *sendRawRequest(const QByteArray &verb,
-        const QUrl &url, QNetworkRequest req, const QByteArray &data);
+                                  const QUrl &url,
+                                  QNetworkRequest req,
+                                  const QByteArray &data);
 
     QNetworkReply *sendRawRequest(const QByteArray &verb,
-        const QUrl &url, QNetworkRequest req, QHttpMultiPart *data);
+                                  const QUrl &url,
+                                  QNetworkRequest req,
+                                  QHttpMultiPart *data);
 
     /** Create and start network job for a simple one-off request.
      *
@@ -304,8 +315,8 @@ public:
     QString cookieJarPath();
 
     void resetNetworkAccessManager();
-    QNetworkAccessManager *networkAccessManager();
-    QSharedPointer<QNetworkAccessManager> sharedNetworkAccessManager();
+    [[nodiscard]] QNetworkAccessManager *networkAccessManager() const;
+    [[nodiscard]] QSharedPointer<QNetworkAccessManager> sharedNetworkAccessManager() const;
 
     /// Called by network jobs on credential errors, emits invalidCredentials()
     void handleInvalidCredentials();
@@ -412,6 +423,10 @@ public slots:
     void slotHandleSslErrors(QNetworkReply *, QList<QSslError>);
     void setAskUserForMnemonic(const bool ask);
 
+    void listRemoteFolder(QPromise<OCC::PlaceholderCreateInfo> *promise,
+                          const QString &path,
+                          SyncJournalDb *journalForFolder);
+
 signals:
     /// Emitted whenever there's network activity
     void propagatorNetworkActivity();
@@ -503,6 +518,8 @@ private:
 #endif
     QMap<QString, QVariant> _settingsMap;
     QUrl _url;
+    QUrl _publicShareLinkUrl;
+    bool _isPublicLink = false;
 
     /** If url to use for any user-visible urls.
      *

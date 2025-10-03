@@ -144,6 +144,9 @@ AccountManager::AccountsRestoreResult AccountManager::restore(const bool alsoRes
         }
     }
 
+    ConfigFile().cleanupGlobalNetworkConfiguration();
+    ClientProxy().cleanupGlobalNetworkConfiguration();   
+
     return result;
 }
 
@@ -309,6 +312,8 @@ bool AccountManager::restoreFromLegacySettings()
             settings->endGroup();
             moveNetworkSettingsFromGlobalToAccount(acc);
         }
+        configFile.cleanupGlobalNetworkConfiguration();
+        ClientProxy().cleanupGlobalNetworkConfiguration();   
         return true;
     }
 
@@ -368,7 +373,11 @@ void AccountManager::saveAccountHelper(const AccountPtr &account, QSettings &set
 {
     qCDebug(lcAccountManager) << "Saving settings to" << settings.fileName();
     settings.setValue(QLatin1String(versionC), maxAccountVersion);
-    settings.setValue(QLatin1String(urlC), account->_url.toString());
+    if (account->isPublicShareLink()) {
+        settings.setValue(QLatin1String(urlC), account->publicShareLinkUrl().toString());
+    } else {
+        settings.setValue(QLatin1String(urlC), account->_url.toString());
+    }
     settings.setValue(QLatin1String(davUserC), account->_davUser);
     settings.setValue(QLatin1String(displayNameC), account->davDisplayName());
     settings.setValue(QLatin1String(serverVersionC), account->_serverVersion);
@@ -484,7 +493,6 @@ void AccountManager::moveNetworkSettingsFromGlobalToAccount(const AccountPtr &ac
                                   configFile.proxyNeedsAuth(),
                                   configFile.proxyUser(),
                                   configFile.proxyPassword());
-        ClientProxy().cleanupGlobalNetworkConfiguration();
     }
 
     const auto useUploadLimit = configFile.useUploadLimit();
@@ -497,7 +505,6 @@ void AccountManager::moveNetworkSettingsFromGlobalToAccount(const AccountPtr &ac
     account->setUploadLimit(configFile.uploadLimit());
     account->setDownloadLimitSetting(static_cast<Account::AccountNetworkTransferLimitSetting>(useDownloadLimit));
     account->setDownloadLimit(configFile.downloadLimit());
-    configFile.cleanupGlobalNetworkConfiguration();
 }
 
 AccountPtr AccountManager::loadAccountHelper(QSettings &settings)
