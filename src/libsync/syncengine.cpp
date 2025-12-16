@@ -1076,22 +1076,6 @@ void SyncEngine::finishSync()
     emit transmissionProgress(*_progressInfo);
     _progressInfo->startEstimateUpdates();
 
-           // post update phase script: allow to tweak stuff by a custom script in debug mode.
-    if (!qEnvironmentVariableIsEmpty("OWNCLOUD_POST_UPDATE_SCRIPT")) {
-#ifndef NDEBUG
-        const QString script = qEnvironmentVariable("OWNCLOUD_POST_UPDATE_SCRIPT");
-
-        qCDebug(lcEngine) << "Post Update Script: " << script;
-        auto scriptArgs = script.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
-        if (scriptArgs.size() > 0) {
-            const auto scriptExecutable = scriptArgs.takeFirst();
-            QProcess::execute(scriptExecutable, scriptArgs);
-        }
-#else
-        qCWarning(lcEngine) << "**** Attention: POST_UPDATE_SCRIPT installed, but not executed because compiled with NDEBUG";
-#endif
-    }
-
     // do a database commit
     _journal->commit(QStringLiteral("post treewalk"));
 
@@ -1187,6 +1171,8 @@ void SyncEngine::handleRemnantReadOnlyFolders()
             const auto deletionCallback = [this] (const QString &deleteItem, bool) {
                 slotAddTouchedFile(deleteItem);
             };
+
+            qCInfo(lcEngine()) << "delete" << _localPath + oneFolder->_file;
             FileSystem::removeRecursively(_localPath + oneFolder->_file, deletionCallback, nullptr, deletionCallback);
         } else {
             FileSystem::remove(_localPath + oneFolder->_file);
