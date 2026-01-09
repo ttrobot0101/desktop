@@ -18,12 +18,10 @@ enum Signer: Signing {
     // MARK: - Private
     
     private static func findDynamicLibraries(at url: URL) throws -> [URL] {
-        let dynamicFrameworksLocation = url
-            .appendingPathComponent("Contents")
-            .appendingPathComponent("PlugIns")
-        
-        guard let enumerator = FileManager.default.enumerator(at: dynamicFrameworksLocation, includingPropertiesForKeys: nil) else {
-            fatalError("ERROR: Failed to get enumerator for: \(url.path)")
+        Log.info("Looking for dynamic libraries in \(url.path)")
+
+        guard let enumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: nil) else {
+            throw MacCrafterError.environmentError("Failed to get enumerator for: \(url.path)")
         }
         
         let dynamicLibaries: [URL] = enumerator.compactMap { element in
@@ -38,10 +36,11 @@ enum Signer: Signing {
             guard candidate.pathExtension == "dylib" else {
                 return nil
             }
-            
+
+            Log.info("Found dynamic library: \(candidate.path)")
             return candidate
         }
-        
+
         return dynamicLibaries
     }
     
@@ -54,16 +53,18 @@ enum Signer: Signing {
         let pluginsLocation = url
             .appendingPathComponent("Contents")
             .appendingPathComponent("PlugIns")
-        
+
+        Log.info("Looking for extensions in \(pluginsLocation.path)")
         var items = try FileManager.default.contentsOfDirectory(at: pluginsLocation, includingPropertiesForKeys: nil)
         
         items.removeAll { item in
-            if item.path.hasSuffix(".appex") == false {
+            if item.path.hasSuffix(".appex") {
+                Log.info("Found extension bundle: \(item.path)")
+                return false
+            } else {
+                Log.info("Skipping item that is not an extension bundle: \(item.path)")
                 return true
             }
-            
-            Log.info("Found extension bundle: \(item.path)")
-            return false
         }
         
         return items
@@ -78,16 +79,18 @@ enum Signer: Signing {
         let frameworksLocation = url
             .appendingPathComponent("Contents")
             .appendingPathComponent("Frameworks")
-        
+
+        Log.info("Looking for frameworks in \(frameworksLocation.path)")
         var items = try FileManager.default.contentsOfDirectory(at: frameworksLocation, includingPropertiesForKeys: nil)
         
         items.removeAll { item in
-            if item.path.hasSuffix(".framework") == false {
+            if ["dylib", "framework"].contains(item.pathExtension) {
+                Log.info("Found item to sign: \(item.path)")
+                return false
+            } else {
+                Log.info("Skipping item due to invalid path extension: \(item.path)")
                 return true
             }
-            
-            Log.info("Found framework bundle: \(item.path)")
-            return false
         }
         
         return items
@@ -142,17 +145,26 @@ enum Signer: Signing {
             try await group.waitForAll()
         }
 
-        let dynamicLibraries = try findDynamicLibraries(at: location)
+        var dynamicLibraries = [URL]()
 
-        try await withThrowingTaskGroup(of: Void.self) { group in
-            for dynamicLibrary in dynamicLibraries {
-                group.addTask {
-                    await sign(at: dynamicLibrary, with: codeSignIdentity, entitlements: nil)
-                }
-            }
+        let binariesLocation = location
+            .appendingPathComponent("Contents")
+            .appendingPathComponent("MacOS")
 
-            try await group.waitForAll()
+        dynamicLibraries.append(contentsOf: try findDynamicLibraries(at: binariesLocation))
+
+        let pluginsLocation = location
+            .appendingPathComponent("Contents")
+            .appendingPathComponent("PlugIns")
+
+        dynamicLibraries.append(contentsOf: try findDynamicLibraries(at: pluginsLocation))
+
+        for dynamicLibrary in dynamicLibraries {
+            await sign(at: dynamicLibrary, with: codeSignIdentity, entitlements: nil)
         }
+
+        await sign(at: binariesLocation.appendingPathComponent("nextcloudcmd"), with: codeSignIdentity, entitlements: nil)
+        await sign(at: binariesLocation.appendingPathComponent("nextclouddevcmd"), with: codeSignIdentity, entitlements: nil)
 
         guard let mainAppEntitlements = entitlements[location.lastPathComponent] else {
             throw MacCrafterError.signing("No entitlements provided for: \(location.path)")
