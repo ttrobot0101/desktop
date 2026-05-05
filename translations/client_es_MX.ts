@@ -447,6 +447,11 @@
     </message>
     <message>
         <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
+        <source>Ask Assistant …</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
         <source>Ask Assistant…</source>
         <translation type="unfinished"/>
     </message>
@@ -4967,6 +4972,11 @@ Este es un modo nuevo y experimental. Si decide usarlo, por favor informe cualqu
     </message>
     <message>
         <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
+        <source>%1 day</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
@@ -5824,6 +5834,11 @@ El servidor respondió con el error: %2</translation>
     <message>
         <location filename="../src/gui/tray/usermodel.cpp" line="1507"/>
         <source>Sending your request…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1529"/>
+        <source>Sending your request …</source>
         <translation type="unfinished"/>
     </message>
     <message>

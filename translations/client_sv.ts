@@ -447,6 +447,11 @@
     </message>
     <message>
         <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
+        <source>Ask Assistant …</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
         <source>Ask Assistant…</source>
         <translation>Fråga assistenten...</translation>
     </message>
@@ -4983,6 +4988,11 @@ Detta är ett nytt experimentellt läge. Om du bestämmer dig för att använda 
     </message>
     <message>
         <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
+        <source>%1 day</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
         <source>1 day</source>
         <translation>1 dag</translation>
     </message>
@@ -5841,6 +5851,11 @@ Servern svarade med fel: %2</translation>
         <location filename="../src/gui/tray/usermodel.cpp" line="1507"/>
         <source>Sending your request…</source>
         <translation>Skickar din begäran...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1529"/>
+        <source>Sending your request …</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/gui/tray/usermodel.cpp" line="1580"/>

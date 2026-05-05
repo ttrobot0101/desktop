@@ -434,7 +434,7 @@
     </message>
     <message>
         <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
-        <source>Ask Assistant…</source>
+        <source>Ask Assistant&#xa0;…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4916,7 +4916,7 @@ This is a new, experimental mode. If you decide to use it, please report any iss
     </message>
     <message>
         <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
-        <source>1 day</source>
+        <source>%1 day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5756,7 +5756,7 @@ Server replied with error: %2</source>
     </message>
     <message>
         <location filename="../src/gui/tray/usermodel.cpp" line="1529"/>
-        <source>Sending your request…</source>
+        <source>Sending your request&#xa0;…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

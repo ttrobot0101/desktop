@@ -447,6 +447,11 @@
     </message>
     <message>
         <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
+        <source>Ask Assistant …</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
         <source>Ask Assistant…</source>
         <translation>Yardımcıya sor...</translation>
     </message>
@@ -4981,6 +4986,11 @@ Bu yeni ve deneysel bir özelliktir. Kullanmaya karar verirseniz, lütfen karş�
     </message>
     <message>
         <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
+        <source>%1 day</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
         <source>1 day</source>
         <translation>1 gün</translation>
     </message>
@@ -5839,6 +5849,11 @@ Sunucunun verdiği hata yanıtı: %2</translation>
         <location filename="../src/gui/tray/usermodel.cpp" line="1507"/>
         <source>Sending your request…</source>
         <translation>İsteğiniz gönderiliyor...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1529"/>
+        <source>Sending your request …</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/gui/tray/usermodel.cpp" line="1580"/>

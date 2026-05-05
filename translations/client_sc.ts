@@ -447,6 +447,11 @@
     </message>
     <message>
         <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
+        <source>Ask Assistant …</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
         <source>Ask Assistant…</source>
         <translation type="unfinished"/>
     </message>
@@ -4963,6 +4968,11 @@ Custa est una modalidade noa, isperimentale. Si detzides de dda impreare, sinnal
     </message>
     <message>
         <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
+        <source>%1 day</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
@@ -5818,6 +5828,11 @@ Server replied with error: %2</source>
     <message>
         <location filename="../src/gui/tray/usermodel.cpp" line="1507"/>
         <source>Sending your request…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1529"/>
+        <source>Sending your request …</source>
         <translation type="unfinished"/>
     </message>
     <message>

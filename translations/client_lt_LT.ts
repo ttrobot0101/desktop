@@ -447,6 +447,11 @@
     </message>
     <message>
         <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
+        <source>Ask Assistant …</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
         <source>Ask Assistant…</source>
         <translation>Klausti asistento...</translation>
     </message>
@@ -4983,6 +4988,11 @@ Tai yra naujas, eksperimentinis režimas. Jei nuspręsite jį naudoti, prašome 
     </message>
     <message>
         <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
+        <source>%1 day</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/gui/filedetails/sharemodel.cpp" line="573"/>
         <source>1 day</source>
         <translation>1 diena</translation>
     </message>
@@ -5843,6 +5853,11 @@ Serveris atsakė su klaida: %2</translation>
         <translation>Siunčiamas jūsų prašymas…</translation>
     </message>
     <message>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1529"/>
+        <source>Sending your request …</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/gui/tray/usermodel.cpp" line="1580"/>
         <source>No response yet. Please try again later.</source>
         <translation>Kol kas nėra atsakymo. Bandykite dar kartą vėliau.</translation>
@@ -6332,7 +6347,7 @@ Serveris atsakė su klaida: %2</translation>
     <message>
         <location filename="../src/gui/wizard/owncloudhttpcredspage.ui" line="73"/>
         <source>&amp;Username</source>
-        <translation>Na&amp;udotojo vardas</translation>
+        <translation>&amp;Vartotojo vardas</translation>
     </message>
     <message>
         <location filename="../src/gui/wizard/owncloudhttpcredspage.ui" line="83"/>
