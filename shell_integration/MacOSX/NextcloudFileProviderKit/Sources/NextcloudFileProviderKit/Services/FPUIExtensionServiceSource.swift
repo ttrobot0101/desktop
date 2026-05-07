@@ -4,7 +4,6 @@
 import FileProvider
 import Foundation
 import NextcloudKit
-import NextcloudFileProviderKit
 import OSLog
 
 class FPUIExtensionServiceSource: NSObject, NSFileProviderServiceSource, NSXPCListenerDelegate, FPUIExtensionService {
@@ -29,7 +28,7 @@ class FPUIExtensionServiceSource: NSObject, NSFileProviderServiceSource, NSXPCLi
     }
 
     func listener(
-        _ listener: NSXPCListener,
+        _: NSXPCListener,
         shouldAcceptNewConnection newConnection: NSXPCConnection
     ) -> Bool {
         newConnection.exportedInterface = NSXPCInterface(with: FPUIExtensionService.self)
@@ -38,7 +37,7 @@ class FPUIExtensionServiceSource: NSObject, NSFileProviderServiceSource, NSXPCLi
         return true
     }
 
-    //MARK: - FPUIExtensionService protocol methods
+    // MARK: - FPUIExtensionService protocol methods
 
     func authenticate() async -> NSError? {
         logger.info("Authenticating...")
@@ -65,7 +64,7 @@ class FPUIExtensionServiceSource: NSObject, NSFileProviderServiceSource, NSXPCLi
     }
 
     func credentials() async -> NSDictionary {
-        return (fpExtension.ncAccount?.dictionary() ?? [:]) as NSDictionary
+        (fpExtension.ncAccount?.dictionary() ?? [:]) as NSDictionary
     }
 
     func itemServerPath(identifier: NSFileProviderItemIdentifier) async -> NSString? {
