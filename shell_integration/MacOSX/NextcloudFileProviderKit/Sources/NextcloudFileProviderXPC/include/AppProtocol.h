@@ -45,6 +45,32 @@ NS_ASSUME_NONNULL_BEGIN
                             reason:(NSString *)reason
                forDomainIdentifier:(NSString *)domainIdentifier;
 
+/**
+ * @brief The file provider extension reports a single item that the server refused with HTTP 507 (or that the pre-flight quota check refused).
+ *
+ * The main app surfaces an entry per item in its activity view, identical in shape to the per-item error entries the classic sync engine produces (e.g. "“X” was not synchronized — Insufficient storage on the server."). See nextcloud/desktop#9598.
+ *
+ * @param relativePath The item's path relative to the file provider domain root.
+ * @param fileName The display name of the item.
+ * @param fileBytes Size of the local file the user tried to upload, in bytes. May be `nil` if not known at report time.
+ * @param availableBytes Available quota the server reported via PROPFIND, in bytes. May be `nil` (e.g. when the refusal came from the server's 507 response rather than a pre-flight PROPFIND).
+ * @param domainIdentifier The file provider domain identifier for the affected account.
+ */
+- (void)reportInsufficientQuotaForItem:(NSString *)relativePath
+                              fileName:(NSString *)fileName
+                             fileBytes:(NSNumber * _Nullable)fileBytes
+                        availableBytes:(NSNumber * _Nullable)availableBytes
+                   forDomainIdentifier:(NSString *)domainIdentifier;
+
+/**
+ * @brief The file provider extension reports that one or more uploads were refused by the server's quota for the given domain.
+ *
+ * The main app surfaces a single per-folder summary entry in its activity view with a "Retry all uploads" button — analogous to the entry the classic sync engine produces via `SyncEngine::slotInsufficientRemoteStorage`. The main app dedupes this report per domain.
+ *
+ * @param domainIdentifier The file provider domain identifier for the affected account.
+ */
+- (void)reportInsufficientQuotaSummaryForDomainIdentifier:(NSString *)domainIdentifier;
+
 @end
 
 NS_ASSUME_NONNULL_END

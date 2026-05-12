@@ -49,6 +49,18 @@ private final class CapturingAppProxy: NSObject, AppProtocol {
             )
         )
     }
+
+    /// Unused by these tests but required for protocol conformance — see
+    /// `InsufficientQuotaReporterTests` for the dedicated coverage.
+    func reportInsufficientQuota(
+        forItem _: String,
+        fileName _: String,
+        fileBytes _: NSNumber?,
+        availableBytes _: NSNumber?,
+        forDomainIdentifier _: String
+    ) {}
+
+    func reportInsufficientQuotaSummary(forDomainIdentifier _: String) {}
 }
 
 final class BundleExclusionReporterTests: XCTestCase {

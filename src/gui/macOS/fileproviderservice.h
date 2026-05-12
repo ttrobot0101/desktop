@@ -82,6 +82,34 @@ signals:
      */
     void itemExcludedFromSync(const QString &domainIdentifier, const QString &relativePath, const QString &fileName, const QString &reason);
 
+    /**
+     * @brief Emitted when a file provider extension reports a single item it refused to upload because of insufficient server-side quota.
+     *
+     * Consumers surface a per-item entry in the activity view — the same shape the classic
+     * sync engine produces via `User::slotAddErrorToGui`. See
+     * https://github.com/nextcloud/desktop/issues/9598.
+     *
+     * @param domainIdentifier The file provider domain identifier for the affected account.
+     * @param relativePath The path of the item relative to the file provider domain root.
+     * @param fileName The display name of the item.
+     * @param fileBytes The size of the file the user tried to upload, in bytes. -1 if unknown.
+     * @param availableBytes Available quota at the upload's parent at the time of refusal, in bytes. -1 if unknown.
+     */
+    void insufficientQuotaForItem(const QString &domainIdentifier, const QString &relativePath, const QString &fileName, qint64 fileBytes, qint64 availableBytes);
+
+    /**
+     * @brief Emitted when a file provider extension reports that one or more uploads were refused by the server quota for the given domain.
+     *
+     * Consumers surface a per-folder summary entry in the activity view with a "Retry all
+     * uploads" button — the same shape `SyncEngine::slotInsufficientRemoteStorage` →
+     * `User::slotAddError(InsufficientRemoteStorage)` produces for classic sync.
+     *
+     * The extension dedupes the report per domain; consumers do not need to dedupe again.
+     *
+     * @param domainIdentifier The file provider domain identifier for the affected account.
+     */
+    void insufficientQuotaSummary(const QString &domainIdentifier);
+
 private:
     class MacImplementation;
     std::unique_ptr<MacImplementation> d;

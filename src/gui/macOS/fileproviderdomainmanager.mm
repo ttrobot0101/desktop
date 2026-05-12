@@ -552,6 +552,67 @@ void FileProviderDomainManager::openFileViewerForDomainIdentifier(const QString 
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL fileURLWithPath:url.toNSString()]]];
 }
 
+void FileProviderDomainManager::clearInsufficientQuotaErrorAndEnumerate(const QString &domainIdentifier) const
+{
+    if (!d || domainIdentifier.isEmpty()) {
+        return;
+    }
+
+    NSFileProviderDomain *targetDomain = nil;
+
+    for (NSFileProviderDomain * const domain : d->getDomains()) {
+        if (domainIdentifier == QString::fromNSString(domain.identifier)) {
+            targetDomain = domain;
+            break;
+        }
+    }
+
+    if (!targetDomain) {
+        qCWarning(lcMacFileProviderDomainManager) << "No file provider domain found with identifier"
+                                                  << domainIdentifier
+                                                  << "— cannot clear insufficient-quota error.";
+        return;
+    }
+
+    NSFileProviderManager * const manager = [NSFileProviderManager managerForDomain:targetDomain];
+
+    if (!manager) {
+        qCWarning(lcMacFileProviderDomainManager) << "No NSFileProviderManager for domain"
+                                                  << domainIdentifier
+                                                  << "— cannot clear insufficient-quota error.";
+        return;
+    }
+
+    NSError * const insufficientQuotaError = [NSError errorWithDomain:NSFileProviderErrorDomain
+                                                                 code:NSFileProviderErrorInsufficientQuota
+                                                             userInfo:nil];
+
+    qCInfo(lcMacFileProviderDomainManager) << "Clearing insufficient-quota error and signalling working-set enumerator for domain"
+                                           << domainIdentifier;
+
+    // Per Apple's documentation for `signalErrorResolved(_:completionHandler:)`, calling it
+    // tells the system that the previously-returned error no longer applies; the system may
+    // then retry the failed operation. Signalling the working set enumerator afterwards
+    // nudges the system to actually re-evaluate pending non-uploaded items, mirroring the
+    // pattern already used for `.notAuthenticated` in `FileProviderExtension.swift`.
+    [manager signalErrorResolved:insufficientQuotaError completionHandler:^(NSError * const resolveError) {
+        if (resolveError) {
+            qCWarning(lcMacFileProviderDomainManager) << "Failed to clear insufficient-quota error for domain"
+                                                      << domainIdentifier
+                                                      << ":" << QString::fromNSString(resolveError.localizedDescription);
+        }
+        
+        [manager signalEnumeratorForContainerItemIdentifier:NSFileProviderWorkingSetContainerItemIdentifier
+                                          completionHandler:^(NSError * const enumerateError) {
+            if (enumerateError) {
+                qCWarning(lcMacFileProviderDomainManager) << "Failed to signal working-set enumerator for domain"
+                                                          << domainIdentifier
+                                                          << ":" << QString::fromNSString(enumerateError.localizedDescription);
+            }
+        }];
+    }];
+}
+
 void FileProviderDomainManager::slotHandleFileIdsChanged(const OCC::Account * const account, const QList<qint64> &fileIds)
 {
     // NOTE: The fileIds argument is ignored for now but retained in the signature for future use.

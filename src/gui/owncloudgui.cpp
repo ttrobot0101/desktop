@@ -315,6 +315,7 @@ void ownCloudGui::slotComputeOverallSyncStatus()
 
 #ifdef BUILD_FILE_PROVIDER_MODULE
     QList<QString> problemFileProviderAccounts;
+    QList<QString> errorFileProviderAccounts;
     QList<QString> syncingFileProviderAccounts;
     QList<QString> successFileProviderAccounts;
     QList<QString> idleFileProviderAccounts;
@@ -334,6 +335,9 @@ void ownCloudGui::slotComputeOverallSyncStatus()
         const auto accountTooltipLabel = displayName.isEmpty() ? userIdAtHostWithPort : displayName;
 
         if (!fileProvider->xpc()->fileProviderDomainReachable(accountFpId)) {
+            // Unreachable XPC stays in the yellow "Problem" bucket (legacy behavior); the
+            // domain might just be coming up. Only proper failure states (`Error`/`SetupError`)
+            // earn the red icon.
             problemFileProviderAccounts.append(accountTooltipLabel);
         } else {
             switch (fileProvider->service()->latestReceivedSyncStatusForAccount(accountState->account())) {
@@ -350,9 +354,19 @@ void ownCloudGui::slotComputeOverallSyncStatus()
                 successFileProviderAccounts.append(accountTooltipLabel);
                 break;
             case SyncResult::Problem:
+                // Yellow tray icon — soft warning. Reserve for cases like unresolved
+                // conflicts coexisting with an otherwise successful sync.
+                problemFileProviderAccounts.append(accountTooltipLabel);
+                break;
             case SyncResult::Error:
             case SyncResult::SetupError:
-                problemFileProviderAccounts.append(accountTooltipLabel);
+                // Red tray icon — an actual operation failed (e.g. quota refusal). Tracked
+                // separately from Problem so the icon below can correctly map to
+                // `SyncResult::Error` rather than `Problem`. Without this split, every
+                // `SYNC_FAILED` from the FPE — including insufficient-quota refusals —
+                // landed in the same bucket as soft warnings and showed the yellow icon.
+                // See https://github.com/nextcloud/desktop/issues/9598.
+                errorFileProviderAccounts.append(accountTooltipLabel);
                 break;
             case SyncResult::Paused: // This is not technically possible with VFS
                 break;
@@ -407,7 +421,9 @@ void ownCloudGui::slotComputeOverallSyncStatus()
     FolderMan::trayOverallStatus(map.values(), &overallStatus, &hasUnresolvedConflicts, &overallProgressInfo);
 
 #ifdef BUILD_FILE_PROVIDER_MODULE
-    if (!problemFileProviderAccounts.isEmpty()) {
+    if (!errorFileProviderAccounts.isEmpty()) {
+        overallStatus = SyncResult::Error;
+    } else if (!problemFileProviderAccounts.isEmpty()) {
         overallStatus = SyncResult::Problem;
     } else if (!syncingFileProviderAccounts.isEmpty() &&
                overallStatus != SyncResult::SyncRunning &&
@@ -415,7 +431,7 @@ void ownCloudGui::slotComputeOverallSyncStatus()
                overallStatus != SyncResult::Error &&
                overallStatus != SyncResult::SetupError) {
         overallStatus = SyncResult::SyncRunning;
-    } else if ((!successFileProviderAccounts.isEmpty() || (problemFileProviderAccounts.isEmpty() && syncingFileProviderAccounts.isEmpty() && !idleFileProviderAccounts.isEmpty())) &&
+    } else if ((!successFileProviderAccounts.isEmpty() || (problemFileProviderAccounts.isEmpty() && errorFileProviderAccounts.isEmpty() && syncingFileProviderAccounts.isEmpty() && !idleFileProviderAccounts.isEmpty())) &&
                overallStatus != SyncResult::SyncRunning &&
                overallStatus != SyncResult::Problem &&
                overallStatus != SyncResult::Error &&
@@ -441,7 +457,7 @@ void ownCloudGui::slotComputeOverallSyncStatus()
 
     // create the tray blob message, check if we have an defined state
 #ifdef BUILD_FILE_PROVIDER_MODULE
-    if (!map.isEmpty() || !syncingFileProviderAccounts.isEmpty() || !successFileProviderAccounts.isEmpty() || !problemFileProviderAccounts.isEmpty()) {
+    if (!map.isEmpty() || !syncingFileProviderAccounts.isEmpty() || !successFileProviderAccounts.isEmpty() || !problemFileProviderAccounts.isEmpty() || !errorFileProviderAccounts.isEmpty()) {
 #else
     if (map.count() > 0) {
 #endif
@@ -468,6 +484,9 @@ void ownCloudGui::slotComputeOverallSyncStatus()
         }
         for (const auto &accountId : problemFileProviderAccounts) {
             allStatusStrings += tr("macOS VFS for %1: A problem was encountered.").arg(accountId);
+        }
+        for (const auto &accountId : errorFileProviderAccounts) {
+            allStatusStrings += tr("macOS VFS for %1: An error was encountered.").arg(accountId);
         }
 #endif
         trayMessage = allStatusStrings.join(QLatin1String("\n"));

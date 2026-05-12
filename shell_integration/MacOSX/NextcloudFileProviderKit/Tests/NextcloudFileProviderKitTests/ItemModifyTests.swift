@@ -4,6 +4,7 @@
 @preconcurrency import FileProvider
 @testable import NextcloudFileProviderKit
 import NextcloudFileProviderKitMocks
+import NextcloudFileProviderXPC
 import NextcloudKit
 import RealmSwift
 import TestInterface
@@ -154,6 +155,110 @@ final class ItemModifyTests: NextcloudFileProviderKitTestCase {
         XCTAssertEqual(
             remoteItem.remotePath, targetItemMetadata.serverUrl + "/" + targetItemMetadata.fileName
         )
+    }
+
+    /// Modify-path counterpart of `testCreateFileRefusedByQuotaReportsToMainApp`: the extension
+    /// must surface a per-item + per-folder summary report to the main app over XPC when an
+    /// already-uploaded file is rewritten with content the server can no longer accept.
+    func testModifyFileRefusedByQuotaReportsToMainApp() async throws {
+        rootItem.quotaAvailableBytes = 4
+        let remoteInterface = MockRemoteInterface(account: Self.account, rootItem: rootItem)
+
+        let itemMetadata = remoteItem.toItemMetadata(account: Self.account)
+        Self.dbManager.addItemMetadata(itemMetadata)
+
+        let newContents = "Hello, much bigger New World!".data(using: .utf8)!
+        let newContentsUrl = FileManager.default.temporaryDirectory
+            .appendingPathComponent("quota-report-modify")
+        try newContents.write(to: newContentsUrl)
+
+        var targetItemMetadata = SendableItemMetadata(value: itemMetadata)
+        targetItemMetadata.size = Int64(newContents.count)
+
+        let domain = NSFileProviderDomain(
+            identifier: NSFileProviderDomainIdentifier("test-domain-modify"),
+            displayName: "test"
+        )
+        let proxy = QuotaCapturingAppProxy()
+
+        let item = Item(
+            metadata: itemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+        let targetItem = Item(
+            metadata: targetItemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+
+        let (modifiedItem, error) = await item.modify(
+            itemTarget: targetItem,
+            changedFields: [.contents, .contentModificationDate],
+            contents: newContentsUrl,
+            domain: domain,
+            dbManager: Self.dbManager,
+            appProxy: proxy
+        )
+
+        XCTAssertNil(modifiedItem)
+        XCTAssertEqual((error as? NSFileProviderError)?.code, .insufficientQuota)
+        XCTAssertEqual(proxy.capturedItems.count, 1)
+        XCTAssertEqual(proxy.capturedItems.first?.fileName, "item.txt")
+        XCTAssertEqual(proxy.capturedItems.first?.fileBytes, Int64(newContents.count))
+        XCTAssertEqual(proxy.capturedSummaryDomains, ["test-domain-modify"])
+    }
+
+    /// Pre-flight quota gate on the modify path: when the parent's `quotaAvailableBytes`
+    /// is below the new local content size, refuse the upload up-front with
+    /// `.insufficientQuota` and leave the remote item untouched.
+    /// See nextcloud/desktop#9598.
+    func testModifyFileBlockedByInsufficientQuota() async throws {
+        rootItem.quotaAvailableBytes = 4 // less than the new content we're about to push
+        let remoteInterface = MockRemoteInterface(account: Self.account, rootItem: rootItem)
+
+        let itemMetadata = remoteItem.toItemMetadata(account: Self.account)
+        Self.dbManager.addItemMetadata(itemMetadata)
+
+        let originalRemoteData = remoteItem.data
+        let newContents = "Hello, much bigger New World!".data(using: .utf8)!
+        let newContentsUrl = FileManager.default.temporaryDirectory
+            .appendingPathComponent("quota-blocked-modify")
+        try newContents.write(to: newContentsUrl)
+
+        var targetItemMetadata = SendableItemMetadata(value: itemMetadata)
+        targetItemMetadata.size = Int64(newContents.count)
+
+        let item = Item(
+            metadata: itemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+        let targetItem = Item(
+            metadata: targetItemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+
+        let (modifiedItem, error) = await item.modify(
+            itemTarget: targetItem,
+            changedFields: [.contents, .contentModificationDate],
+            contents: newContentsUrl,
+            dbManager: Self.dbManager
+        )
+
+        XCTAssertNil(modifiedItem)
+        XCTAssertEqual((error as? NSFileProviderError)?.code, .insufficientQuota)
+        // The remote bytes must not have been touched by the refused upload.
+        XCTAssertEqual(remoteItem.data, originalRemoteData)
     }
 
     func testModifyFolder() async throws {

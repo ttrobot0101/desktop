@@ -124,6 +124,7 @@ public extension Item {
         forcedChunkSize: Int?,
         progress: Progress,
         dbManager: FilesDatabaseManager,
+        appProxy: (any AppProtocol)? = nil,
         log: any FileProviderLogging
     ) async -> (Item?, Error?) {
         let logger = FileProviderLogger(category: "Item", log: log)
@@ -162,13 +163,23 @@ public extension Item {
                     received ocId: \(ocId ?? "empty")
                 """
             )
-            return await (nil, error.fileProviderError(
-                handlingCollisionAgainstItemInRemotePath: remotePath,
-                dbManager: dbManager,
-                remoteInterface: remoteInterface,
-                log: log
-            ))
+
+            // Surface the quota refusal in the main app's activity view (per-item entry +
+            // per-folder summary with a "Retry all uploads" button), matching the parity
+            // classic sync provides via `User::slotAddError(InsufficientRemoteStorage)` and
+            // `User::slotAddErrorToGui`. See nextcloud/desktop#9598.
+            if error.isGoingOverQuotaError {
+                let relativePath = remotePath.replacingOccurrences(of: account.davFilesUrl, with: "")
+                let fileBytes = (try? FileManager.default.attributesOfItem(atPath: localPath)[.size] as? Int64) ?? itemTemplate.documentSize??.int64Value
+                InsufficientQuotaReporter.reportItem(relativePath: relativePath, fileName: itemTemplate.filename, fileBytes: fileBytes, availableBytes: nil, domainIdentifier: domain?.identifier, appProxy: appProxy, log: log)
+                await InsufficientQuotaReporter.reportSummary(domainIdentifier: domain?.identifier, appProxy: appProxy, log: log)
+            }
+
+            return await (nil, error.fileProviderError(handlingCollisionAgainstItemInRemotePath: remotePath, dbManager: dbManager, remoteInterface: remoteInterface, log: log))
         }
+
+        // Re-arm the per-domain dedup so a future quota event can surface a fresh summary.
+        await InsufficientQuotaReporter.clearSummaryDedup(domainIdentifier: domain?.identifier)
 
         logger.info(
             """
@@ -401,6 +412,7 @@ public extension Item {
             forcedChunkSize: forcedChunkSize,
             progress: progress,
             dbManager: dbManager,
+            appProxy: appProxy,
             log: log
         )
     }

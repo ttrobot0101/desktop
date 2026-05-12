@@ -4,11 +4,51 @@
 @preconcurrency import FileProvider
 @testable import NextcloudFileProviderKit
 import NextcloudFileProviderKitMocks
+import NextcloudFileProviderXPC
 import NextcloudKit
 import RealmSwift
 import TestInterface
 import UniformTypeIdentifiers
 import XCTest
+
+/// Captures the quota XPC calls so tests can verify the extension informs the main app on
+/// quota refusals (per-item + per-folder summary). See nextcloud/desktop#9598.
+final class QuotaCapturingAppProxy: NSObject, AppProtocol {
+    struct ItemCapture: Equatable {
+        let fileName: String
+        let fileBytes: Int64?
+        let availableBytes: Int64?
+        let domainIdentifier: String
+    }
+
+    var capturedItems: [ItemCapture] = []
+    var capturedSummaryDomains: [String] = []
+
+    func presentFileActions(_: String, path _: String, remoteItemPath _: String, withDomainIdentifier _: String) {}
+    func reportSyncStatus(_: String, forDomainIdentifier _: String) {}
+    func reportItemExcluded(fromSync _: String, fileName _: String, reason _: String, forDomainIdentifier _: String) {}
+
+    func reportInsufficientQuota(
+        forItem _: String,
+        fileName: String,
+        fileBytes: NSNumber?,
+        availableBytes: NSNumber?,
+        forDomainIdentifier domainIdentifier: String
+    ) {
+        capturedItems.append(
+            ItemCapture(
+                fileName: fileName,
+                fileBytes: fileBytes?.int64Value,
+                availableBytes: availableBytes?.int64Value,
+                domainIdentifier: domainIdentifier
+            )
+        )
+    }
+
+    func reportInsufficientQuotaSummary(forDomainIdentifier domainIdentifier: String) {
+        capturedSummaryDomains.append(domainIdentifier)
+    }
+}
 
 final class ItemCreateTests: NextcloudFileProviderKitTestCase {
     static let account = Account(
@@ -134,6 +174,135 @@ final class ItemCreateTests: NextcloudFileProviderKitTestCase {
         XCTAssertTrue(dbItem.uploaded)
         XCTAssertTrue(createdItem.isDownloaded)
         XCTAssertTrue(createdItem.isUploaded)
+    }
+
+    /// Pre-flight quota gate: when the parent's `quotaAvailableBytes` is below the local
+    /// file size, refuse the upload up-front with `.insufficientQuota` and never call
+    /// the remote upload endpoint. See nextcloud/desktop#9598.
+    func testCreateFileBlockedByInsufficientQuota() async throws {
+        rootItem.quotaAvailableBytes = 4 // less than the file we're about to upload
+        let remoteInterface = MockRemoteInterface(account: Self.account, rootItem: rootItem)
+
+        var fileItemMetadata = SendableItemMetadata(
+            ocId: "file-id", fileName: "file", account: Self.account
+        )
+        fileItemMetadata.classFile = NKTypeClassFile.document.rawValue
+
+        let tempUrl = FileManager.default.temporaryDirectory
+            .appendingPathComponent("quota-blocked-create")
+        try Data("Hello world".utf8).write(to: tempUrl) // 11 bytes > 4 bytes available
+
+        let fileItemTemplate = Item(
+            metadata: fileItemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+        let (createdItem, error) = await Item.create(
+            basedOn: fileItemTemplate,
+            contents: tempUrl,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            progress: Progress(),
+            dbManager: Self.dbManager,
+            log: FileProviderLogMock()
+        )
+
+        XCTAssertNil(createdItem)
+        XCTAssertEqual((error as? NSFileProviderError)?.code, .insufficientQuota)
+        // No upload was attempted: the file did not appear under the remote root.
+        XCTAssertNil(rootItem.children.first { $0.name == fileItemMetadata.fileName })
+    }
+
+    /// When an upload is refused by the pre-flight quota gate, the extension must inform the
+    /// main app via XPC so it can surface a per-item activity entry plus a per-folder summary
+    /// entry with a "Retry all uploads" button. See nextcloud/desktop#9598.
+    func testCreateFileRefusedByQuotaReportsToMainApp() async throws {
+        rootItem.quotaAvailableBytes = 4
+        let remoteInterface = MockRemoteInterface(account: Self.account, rootItem: rootItem)
+
+        var fileItemMetadata = SendableItemMetadata(
+            ocId: "file-id", fileName: "file-quota-report", account: Self.account
+        )
+        fileItemMetadata.classFile = NKTypeClassFile.document.rawValue
+
+        let tempUrl = FileManager.default.temporaryDirectory
+            .appendingPathComponent("quota-report-create")
+        try Data("Hello world".utf8).write(to: tempUrl) // 11 bytes > 4 bytes available
+
+        let domain = NSFileProviderDomain(
+            identifier: NSFileProviderDomainIdentifier("test-domain-create"),
+            displayName: "test"
+        )
+        let proxy = QuotaCapturingAppProxy()
+
+        let fileItemTemplate = Item(
+            metadata: fileItemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+        let (createdItem, error) = await Item.create(
+            basedOn: fileItemTemplate,
+            contents: tempUrl,
+            domain: domain,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            progress: Progress(),
+            dbManager: Self.dbManager,
+            appProxy: proxy,
+            log: FileProviderLogMock()
+        )
+
+        XCTAssertNil(createdItem)
+        XCTAssertEqual((error as? NSFileProviderError)?.code, .insufficientQuota)
+
+        XCTAssertEqual(proxy.capturedItems.count, 1)
+        let itemCapture = try XCTUnwrap(proxy.capturedItems.first)
+        XCTAssertEqual(itemCapture.fileName, "file-quota-report")
+        XCTAssertEqual(itemCapture.domainIdentifier, "test-domain-create")
+        XCTAssertEqual(itemCapture.fileBytes, 11)
+
+        XCTAssertEqual(proxy.capturedSummaryDomains, ["test-domain-create"])
+    }
+
+    /// Negative `quotaAvailableBytes` (the default for accounts with no quota set) must
+    /// not trigger the new pre-flight gate; the upload proceeds normally.
+    func testCreateFileWithUnknownQuotaProceeds() async throws {
+        XCTAssertEqual(rootItem.quotaAvailableBytes, -1) // default sentinel
+        let remoteInterface = MockRemoteInterface(account: Self.account, rootItem: rootItem)
+
+        var fileItemMetadata = SendableItemMetadata(
+            ocId: "file-id", fileName: "file-no-quota", account: Self.account
+        )
+        fileItemMetadata.classFile = NKTypeClassFile.document.rawValue
+
+        let tempUrl = FileManager.default.temporaryDirectory
+            .appendingPathComponent("quota-unknown-create")
+        try Data("Hello world".utf8).write(to: tempUrl)
+
+        let fileItemTemplate = Item(
+            metadata: fileItemMetadata,
+            parentItemIdentifier: .rootContainer,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            dbManager: Self.dbManager
+        )
+        let (createdItemMaybe, error) = await Item.create(
+            basedOn: fileItemTemplate,
+            contents: tempUrl,
+            account: Self.account,
+            remoteInterface: remoteInterface,
+            progress: Progress(),
+            dbManager: Self.dbManager,
+            log: FileProviderLogMock()
+        )
+
+        XCTAssertNil(error)
+        let createdItem = try XCTUnwrap(createdItemMaybe)
+        XCTAssertNotNil(rootItem.children.first { $0.identifier == createdItem.itemIdentifier.rawValue })
     }
 
     func testCreateFileIntoFolder() async throws {

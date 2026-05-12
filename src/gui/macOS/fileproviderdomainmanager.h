@@ -79,6 +79,19 @@ public:
      */
     void openFileViewerForDomainIdentifier(const QString &domainIdentifier) const;
 
+    /**
+     * @brief Tell the system that the previously-returned `NSFileProviderError.insufficientQuota` error no longer applies and signal an enumeration of the working set so the system retries refused uploads.
+     *
+     * Implements the documented contract of
+     * `NSFileProviderManager.signalErrorResolved(_:completionHandler:)` followed by
+     * `signalEnumerator(for: .workingSet)`. Called from `User::slotFileProviderRetryUploads`
+     * when the user clicks the "Retry all uploads" button on the per-folder summary entry
+     * surfaced for nextcloud/desktop#9598.
+     *
+     * @param domainIdentifier The identifier of the affected file provider domain.
+     */
+    void clearInsufficientQuotaErrorAndEnumerate(const QString &domainIdentifier) const;
+
 public slots:
     /**
      * @brief Handle file ID changes from push notifications
