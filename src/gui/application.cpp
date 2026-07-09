@@ -344,7 +344,7 @@ Application::Application(int &argc, char **argv)
 
     // try to migrate legacy accounts and folders from a previous client version
     // only copy the settings and check what should be skipped
-    if (!configVersionMigration()) {
+    if (!AccountSetupCommandLineManager::instance()->isCommandLineParsed() && !configVersionMigration()) {
         qCWarning(lcApplication) << "Config version migration was not possible.";
     }
 
@@ -414,6 +414,15 @@ Application::Application(int &argc, char **argv)
 
     // create accounts and folders from a legacy desktop client or from the current config file
     setupAccountsAndFolders();
+
+    if (AccountSetupCommandLineManager::instance()->isCommandLineParsed()) {
+        AccountSetupCommandLineManager::instance()->setupAccountFromCommandLine();
+        _quitInstance = true;
+    }
+    AccountSetupCommandLineManager::destroy();
+    if (_quitInstance) {
+        return;
+    }
 
     setQuitOnLastWindowClosed(false);
 
@@ -500,11 +509,6 @@ Application::Application(int &argc, char **argv)
         }
     }
 #endif
-
-    if (AccountSetupCommandLineManager::instance()->isCommandLineParsed()) {
-        AccountSetupCommandLineManager::instance()->setupAccountFromCommandLine();
-    }
-    AccountSetupCommandLineManager::destroy();
 
 #if defined(BUILD_FILE_PROVIDER_MODULE)
     Mac::FileProvider::instance();
@@ -850,7 +854,7 @@ void Application::slotownCloudWizardDone(int res)
 
         Utility::setLaunchOnStartup(_theme->appName(), _theme->appNameGUI(), true);
 
-        Systray::instance()->showWindow();
+        Systray::instance()->showTrayPopup();
     }
 }
 

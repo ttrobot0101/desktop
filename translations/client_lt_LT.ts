@@ -2,64 +2,64 @@
 <context>
     <name>AccountWizardWindow</name>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="162"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="160"/>
         <source>Secure connection failed</source>
         <translation>Saugus ryšys nepavyko</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="165"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="163"/>
         <source>Connect to %1?</source>
         <translation>Prisijungti prie %1?</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="175"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="173"/>
         <source>The secure connection failed. You can retry without encryption, or add a client certificate and try again.</source>
         <translation>Saugus ryšys nepavyko. Galite bandyti dar kartą be šifravimo arba pridėti kliento sertifikatą ir bandyti dar kartą.</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="176"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="174"/>
         <source>The secure connection failed. You can add a client certificate and try again.</source>
         <translation>Saugus ryšys nepavyko. Galite pridėti kliento sertifikatą ir bandyti dar kartą.</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="197"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="195"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="266"/>
         <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="268"/>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="270"/>
         <source>Cancel</source>
         <translation>Atsisakyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="207"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="205"/>
         <source>Connect without TLS</source>
         <translation>Prisijunkite be TLS</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="219"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="217"/>
         <source>Use client certificate</source>
         <translation>Naudokite kliento sertifikatą</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="271"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="269"/>
         <source>Back</source>
         <translation>Atgal</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="285"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="283"/>
         <source>Set up later</source>
         <translation>Nustatykite vėliau</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="296"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="294"/>
         <source>Advanced</source>
         <translation>Išplėstiniai</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="305"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="303"/>
         <source>Sign up</source>
         <translation>Užsiregistruoti</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="315"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="313"/>
         <source>Self-host</source>
         <translation>Priegloba savo serveryje</translation>
     </message>
@@ -69,40 +69,53 @@
         <translation>Tarpinio serverio nustatymai</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="349"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="357"/>
         <source>Copy link</source>
         <translation>Kopijuoti nuorodą</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="382"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="390"/>
         <source>Open</source>
         <translation>Atverti</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="384"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="392"/>
         <source>Connect</source>
         <translation>Prisijungti</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="386"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="394"/>
         <source>Done</source>
         <translation>Atlikta</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="388"/>
+        <location filename="../src/gui/wizard/qml/AccountWizardWindow.qml" line="396"/>
         <source>Log in</source>
         <translation>Prisijungti</translation>
     </message>
 </context>
 <context>
+    <name>ActivitiesWindow</name>
+    <message>
+        <location filename="../src/gui/ActivitiesWindow.qml" line="19"/>
+        <source>Activities</source>
+        <translation>Veiklos</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/ActivitiesWindow.qml" line="126"/>
+        <source>New activities</source>
+        <translation>Naujos veiklos</translation>
+    </message>
+</context>
+<context>
     <name>ActivityItem</name>
     <message>
-        <location filename="../src/gui/tray/ActivityItem.qml" line="29"/>
+        <location filename="../src/gui/tray/ActivityItem.qml" line="33"/>
         <source>Open %1 locally</source>
         <translation>Atidaryti %1 vietoje</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/ActivityItem.qml" line="35"/>
+        <location filename="../src/gui/tray/ActivityItem.qml" line="39"/>
         <source>In %1</source>
         <translation>Per %1</translation>
     </message>
@@ -110,40 +123,45 @@
 <context>
     <name>ActivityItemContent</name>
     <message>
-        <location filename="../src/gui/tray/ActivityItemContent.qml" line="183"/>
+        <location filename="../src/gui/tray/ActivityItemContent.qml" line="185"/>
         <source>Open file details</source>
         <translation>Atverti išsamesnę informaciją</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/ActivityItemContent.qml" line="197"/>
+        <location filename="../src/gui/tray/ActivityItemContent.qml" line="199"/>
         <source>File details</source>
         <translation>Išsamiau apie failą</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/ActivityItemContent.qml" line="206"/>
+        <location filename="../src/gui/tray/ActivityItemContent.qml" line="208"/>
         <source>File actions</source>
         <translation>Failo veiksmai</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/ActivityItemContent.qml" line="229"/>
+        <location filename="../src/gui/tray/ActivityItemContent.qml" line="231"/>
         <source>Dismiss</source>
         <translation>Atmesti</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/activitydata.cpp" line="303"/>
+        <source>Confirm</source>
+        <translation>Patvirtinti</translation>
     </message>
 </context>
 <context>
     <name>ActivityList</name>
     <message>
-        <location filename="../src/gui/tray/ActivityList.qml" line="55"/>
+        <location filename="../src/gui/tray/ActivityList.qml" line="56"/>
         <source>Activity list</source>
         <translation>Veiklos sąrašas</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/ActivityList.qml" line="139"/>
+        <location filename="../src/gui/tray/ActivityList.qml" line="142"/>
         <source>Scroll to top</source>
         <translation>Slinkti į viršų</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/ActivityList.qml" line="168"/>
+        <location filename="../src/gui/tray/ActivityList.qml" line="171"/>
         <source>No activities yet</source>
         <translation>Kol kas nėra veiklų</translation>
     </message>
@@ -180,6 +198,46 @@
         <location filename="../src/gui/wizard/qml/AdvancedOptionsDialog.qml" line="90"/>
         <source>Done</source>
         <translation>Atlikta</translation>
+    </message>
+</context>
+<context>
+    <name>AssistantWindow</name>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="19"/>
+        <source>Nextcloud Assistant</source>
+        <translation>Nextcloud asistentas</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="91"/>
+        <location filename="../src/gui/AssistantWindow.qml" line="95"/>
+        <source>Start new conversation?</source>
+        <translation>Pradėti naują pokalbį?</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="104"/>
+        <source>This will clear the existing conversation.</source>
+        <translation>Tai ištrins esamą pokalbį.</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="119"/>
+        <source>Cancel</source>
+        <translation>Atsisakyti</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="125"/>
+        <location filename="../src/gui/AssistantWindow.qml" line="245"/>
+        <source>New conversation</source>
+        <translation>Naujas pokalbis</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="236"/>
+        <source>Ask Assistant …</source>
+        <translation>Klausti asistento  ...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/AssistantWindow.qml" line="252"/>
+        <source>Send</source>
+        <translation>Siųsti</translation>
     </message>
 </context>
 <context>
@@ -459,9 +517,19 @@
 <context>
     <name>EmojiPicker</name>
     <message>
-        <location filename="../src/gui/EmojiPicker.qml" line="136"/>
+        <location filename="../src/gui/EmojiPicker.qml" line="71"/>
+        <source>Search emoji</source>
+        <translation>Ieškoti emociuką</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/EmojiPicker.qml" line="201"/>
         <source>No recent emojis</source>
         <translation>Nėra paskiausiai naudotų emociukų</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/EmojiPicker.qml" line="201"/>
+        <source>No emojis found</source>
+        <translation>Nerasta jokių emociukų</translation>
     </message>
 </context>
 <context>
@@ -620,37 +688,37 @@
         <translation>Pagrindinis turinys</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="330"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="327"/>
         <source>Issue with account %1</source>
         <translation>Nesklandumai su paskyra %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="332"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="329"/>
         <source>Issues with several accounts</source>
         <translation>Nesklandumai su keliomis paskyromis</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="413"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="410"/>
         <source>Start new conversation?</source>
         <translation>Pradėti naują pokalbį?</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="433"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="430"/>
         <source>New conversation</source>
         <translation>Naujas pokalbis</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="437"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="434"/>
         <source>Cancel</source>
         <translation>Atsisakyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="458"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="455"/>
         <source>This will clear the existing conversation.</source>
         <translation>Tai ištrins esamą pokalbį.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="503"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="500"/>
         <source>Ask Assistant …</source>
         <translation>Klausti asistento  ...</translation>
     </message>
@@ -660,24 +728,29 @@
         <translation>Klausti asistento...</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="531"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="528"/>
         <source>Send assistant question</source>
         <translation>Siųsti klausimą asistentui</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="552"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="549"/>
         <source>Start a new assistant chat</source>
         <translation>Pradėti naują pokalbį su asistentu</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="777"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="774"/>
         <source>Unified search results list</source>
         <translation>Vieningas paieškos rezultatų sąrašas</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/MainWindow.qml" line="841"/>
+        <location filename="../src/gui/tray/MainWindow.qml" line="840"/>
         <source>New activities</source>
         <translation>Naujos veiklos</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="741"/>
+        <source>Open Assistant</source>
+        <translation>Atverti asistentą</translation>
     </message>
 </context>
 <context>
@@ -1277,17 +1350,17 @@ Vienintelis virtualių failų palaikymo išjungimo privalumas yra tai, kad vėl 
 <context>
     <name>OCC::AccountSetupFromCommandLineJob</name>
     <message>
-        <location filename="../src/gui/accountsetupfromcommandlinejob.cpp" line="141"/>
+        <location filename="../src/gui/accountsetupfromcommandlinejob.cpp" line="149"/>
         <source>The authenticated request to the server was redirected to &quot;%1&quot;. The URL is bad, the server is misconfigured.</source>
         <translation>Autentifikuota užklausa serveriui buvo nukreipta į „%1“. URL yra blogas, serveris yra netinkamai sukonfigūruotas.</translation>
     </message>
     <message>
-        <location filename="../src/gui/accountsetupfromcommandlinejob.cpp" line="151"/>
+        <location filename="../src/gui/accountsetupfromcommandlinejob.cpp" line="159"/>
         <source>Access forbidden by server. To verify that you have proper access, &lt;a href=&quot;%1&quot;&gt;click here&lt;/a&gt; to access the service with your browser.</source>
         <translation>Serveris draudžia prieigą. Norėdami patikrinti, ar turite tinkamą prieigą, &lt;a href=&quot;%1&quot;&gt;spustelėkite čia&lt;/a&gt;, kad pasiektumėte paslaugą naudodami naršyklę.</translation>
     </message>
     <message>
-        <location filename="../src/gui/accountsetupfromcommandlinejob.cpp" line="159"/>
+        <location filename="../src/gui/accountsetupfromcommandlinejob.cpp" line="167"/>
         <source>There was an invalid response to an authenticated WebDAV request</source>
         <translation>Į autentifikuotą „WebDAV“ užklausą buvo pateiktas neteisingas atsakymas</translation>
     </message>
@@ -1553,17 +1626,17 @@ Vienintelis virtualių failų palaikymo išjungimo privalumas yra tai, kad vėl 
 <context>
     <name>OCC::ActivityListModel</name>
     <message>
-        <location filename="../src/gui/tray/activitylistmodel.cpp" line="487"/>
+        <location filename="../src/gui/tray/activitylistmodel.cpp" line="616"/>
         <source>For more activities please open the Activity app.</source>
         <translation>Jei norite matyti daugiau veiklos, atidarykite programėlę „Veikla“.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/activitylistmodel.cpp" line="507"/>
+        <location filename="../src/gui/tray/activitylistmodel.cpp" line="636"/>
         <source>Fetching activities …</source>
         <translation>Gaunamos veiklos…</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/activitylistmodel.cpp" line="614"/>
+        <location filename="../src/gui/tray/activitylistmodel.cpp" line="744"/>
         <source>Network error occurred: client will retry syncing.</source>
         <translation>Įvyko tinklo klaida: klientas bandys sinchronizuoti dar kartą.</translation>
     </message>
@@ -1698,34 +1771,34 @@ Vienintelis virtualių failų palaikymo išjungimo privalumas yra tai, kad vėl 
         <translation>Tęsti</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="617"/>
+        <location filename="../src/gui/application.cpp" line="622"/>
         <source>%1 accounts</source>
         <comment>number of accounts imported</comment>
         <translation>%1 paskyros</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="618"/>
+        <location filename="../src/gui/application.cpp" line="623"/>
         <source>1 account</source>
         <translation>1 paskyra</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="620"/>
+        <location filename="../src/gui/application.cpp" line="625"/>
         <source>%1 folders</source>
         <comment>number of folders imported</comment>
         <translation>%1 aplankai</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="621"/>
+        <location filename="../src/gui/application.cpp" line="626"/>
         <source>1 folder</source>
         <translation>1 aplankas</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="623"/>
+        <location filename="../src/gui/application.cpp" line="628"/>
         <source>Legacy import</source>
         <translation>Senasis importavimas</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="624"/>
+        <location filename="../src/gui/application.cpp" line="629"/>
         <source>Imported %1 and %2 from a legacy desktop client.
 %3</source>
         <comment>number of accounts and folders imported. list of users.</comment>
@@ -1733,12 +1806,12 @@ Vienintelis virtualių failų palaikymo išjungimo privalumas yra tai, kad vėl 
 %3</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="744"/>
+        <location filename="../src/gui/application.cpp" line="749"/>
         <source>Error accessing the configuration file</source>
         <translation>Klaida gaunant prieigą prie konfigūracijos failo</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="745"/>
+        <location filename="../src/gui/application.cpp" line="750"/>
         <source>There was an error while accessing the configuration file at %1. Please make sure the file can be accessed by your system account.</source>
         <translation>Bandant pasiekti konfigūracijos failą adresu %1, įvyko klaida. Įsitikinkite, kad jūsų sistemos paskyra gali pasiekti failą.</translation>
     </message>
@@ -2604,12 +2677,12 @@ Tai gali būti susiję su jūsų „OpenSSL“ bibliotekomis.</translation>
     <message>
         <location filename="../src/gui/wizard/flow2authwidget.cpp" line="95"/>
         <source>Complete your provider signup in your browser</source>
-        <translation type="unfinished"/>
+        <translation>Baikite paslaugų teikėjo registraciją naršyklėje.</translation>
     </message>
     <message>
         <location filename="../src/gui/wizard/flow2authwidget.cpp" line="96"/>
         <source>Please complete the provider signup in your browser. After the completion, confirm to open the Nextcloud application popup in your browser.</source>
-        <translation type="unfinished"/>
+        <translation>Prašome užbaigti paslaugų teikėjo registraciją savo naršyklėje. Tai atlikę, patvirtinkite „Nextcloud“ programėlės iššokančiojo lango atvėrimą naršyklėje.</translation>
     </message>
     <message>
         <location filename="../src/gui/wizard/flow2authwidget.cpp" line="252"/>
@@ -5722,91 +5795,96 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>OCC::SyncStatusSummary</name>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="151"/>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="201"/>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="467"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="156"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="206"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="472"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="220"/>
         <source>Offline</source>
         <translation>Neprisijungęs</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="154"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="159"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1706"/>
         <source>You need to accept the terms of service</source>
         <translation>Turite sutikti su paslaugų teikimo sąlygomis.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="165"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="170"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1698"/>
         <source>Reauthorization required</source>
         <translation>Reikalingas pakartotinis leidimas</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="166"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="171"/>
         <source>Please grant access to your sync folders</source>
         <translation>Suteikite prieigą prie sinchronizavimo aplankų</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="227"/>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="473"/>
-        <location filename="../src/gui/tray/syncstatussummary.h" line="98"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="232"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="478"/>
+        <location filename="../src/gui/tray/syncstatussummary.h" line="101"/>
         <source>All synced!</source>
         <translation>Viskas sinchronizuota!</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="236"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="241"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1717"/>
         <source>Some files couldn&apos;t be synced!</source>
         <translation>Kai kurių failų nepavyko sinchronizuoti!</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="237"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="242"/>
         <source>See below for errors</source>
         <translation>Išsamiau apie klaidas žiūrėkite žemiau</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="244"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="249"/>
         <source>Checking folder changes</source>
         <translation>Tikrinami aplanko pakeitimai</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="246"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="251"/>
         <source>Syncing changes</source>
         <translation>Sinchronizuojami pakeitimai</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="255"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="260"/>
         <source>Sync paused</source>
         <translation>Sinchronizavimas pristabdytas</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="262"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="267"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1718"/>
         <source>Some files could not be synced!</source>
         <translation>Kai kurių failų nepavyko sinchronizuoti!</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="263"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="268"/>
         <source>See below for warnings</source>
         <translation>Išsamiau apie įspėjimus žiūrėkite žemiau</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="345"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="350"/>
         <source>Syncing</source>
         <translation>Sinchronizuojama</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="358"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="363"/>
         <source>%1 of %2 · %3 left</source>
         <translation>%1 iš %2 · Liko %3</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="362"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="367"/>
         <source>%1 of %2</source>
         <translation>%1 iš %2</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="367"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="372"/>
         <source>Syncing file %1 of %2</source>
         <translation>Sinchronizuojamas failas %1 iš %2</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/syncstatussummary.cpp" line="470"/>
+        <location filename="../src/gui/tray/syncstatussummary.cpp" line="475"/>
         <source>No synchronisation configured</source>
         <translation>Sinchronizavimas nenustatytas</translation>
     </message>
@@ -5814,57 +5892,64 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>OCC::Systray</name>
     <message>
-        <location filename="../src/gui/systray.cpp" line="84"/>
+        <location filename="../src/gui/systray.cpp" line="143"/>
         <source>Download</source>
         <translation>Atsisiųsti</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="259"/>
+        <location filename="../src/gui/systray.cpp" line="484"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="811"/>
         <source>Add account</source>
         <translation>Pridėti paskyrą</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="261"/>
+        <location filename="../src/gui/systray.cpp" line="486"/>
         <source>Open %1 Desktop</source>
         <comment>Open Nextcloud main window. Placeholer will be the application name. Please keep it.</comment>
         <translation>Atidarykite %1 darbalaukį. </translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="264"/>
-        <location filename="../src/gui/systray.cpp" line="274"/>
+        <location filename="../src/gui/systray.cpp" line="489"/>
+        <location filename="../src/gui/systray.cpp" line="499"/>
         <source>Pause sync</source>
         <translation>Pristabdyti sinchronizavimą</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="265"/>
-        <location filename="../src/gui/systray.cpp" line="280"/>
+        <location filename="../src/gui/systray.cpp" line="490"/>
+        <location filename="../src/gui/systray.cpp" line="505"/>
         <source>Resume sync</source>
         <translation>Pratęsti sinchronizavimą</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="266"/>
+        <location filename="../src/gui/systray.cpp" line="491"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="820"/>
         <source>Settings</source>
         <translation>Nustatymai</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="267"/>
+        <location filename="../src/gui/systray.cpp" line="492"/>
         <source>Help</source>
         <translation>Pagalba</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="268"/>
+        <location filename="../src/gui/systray.cpp" line="493"/>
         <source>Exit %1</source>
         <translation>Išeiti iš %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="274"/>
+        <location filename="../src/gui/systray.cpp" line="499"/>
         <source>Pause sync for all</source>
         <translation>Sustabdyti visas sinchronizacijas</translation>
     </message>
     <message>
-        <location filename="../src/gui/systray.cpp" line="280"/>
+        <location filename="../src/gui/systray.cpp" line="505"/>
         <source>Resume sync for all</source>
         <translation>Atnaujinti visas sinchronizacijas</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="827"/>
+        <source>Quit</source>
+        <translation>Išeiti</translation>
     </message>
 </context>
 <context>
@@ -5966,81 +6051,86 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>OCC::User</name>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="386"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="577"/>
         <source>End-to-end certificate needs to be migrated to a new one</source>
         <translation>Ištisinio šifravimo sertifikatą reikia perkelti į naują</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="388"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="579"/>
         <source>Trigger the migration</source>
         <translation>Pradėti perkėlimą</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/tray/usermodel.cpp" line="484"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="680"/>
         <source>%n notification(s)</source>
         <translation><numerusform>%n pranešimas</numerusform><numerusform>%n pranešimai</numerusform><numerusform>%n pranešimų</numerusform><numerusform>%n pranešimų</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="727"/>
-        <location filename="../src/gui/tray/usermodel.cpp" line="766"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="923"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="962"/>
         <source>“%1” was not synchronized</source>
         <translation>„%1“ dar nesinchronizuota</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="768"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="964"/>
         <source>Insufficient storage on the server. The file requires %1 but only %2 are available.</source>
         <translation>Serveryje nepakanka vietos. Failui reikia %1, bet yra tik %2 laisvos vietos.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="771"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="967"/>
         <source>Insufficient storage on the server. The file requires %1.</source>
         <translation>Serveryje nepakanka vietos. Failui reikalinga %1.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="774"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="970"/>
         <source>Insufficient storage on the server.</source>
         <translation>Nepakanka vietos serveryje.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="810"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1006"/>
         <source>There is insufficient space available on the server for some uploads.</source>
         <translation>Serveryje nepakanka vietos kai kuriems įkėlimams.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="826"/>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1172"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1022"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1388"/>
         <source>Retry all uploads</source>
         <translation>Pakartoti visus įkėlimus</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1223"/>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1385"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1439"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1601"/>
         <source>Resolve conflict</source>
         <translation>Išspręsti konfilktą</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1375"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1591"/>
         <source>Rename file</source>
         <translation>Pervadinti failą</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1532"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1690"/>
+        <source>Sync conflicts</source>
+        <translation>Sinchronizavimo konfliktai</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1825"/>
         <source>Public Share Link</source>
         <translation>Vieša nuoroda</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1644"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1937"/>
         <source>Open %1 Assistant</source>
         <comment>The placeholder will be the application name. Please keep it</comment>
         <translation>Atverti %1 asistentą</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1751"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2044"/>
         <source>Assistant is not available for this account.</source>
         <translation>Asistentas šiai paskyrai nepasiekiamas.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1757"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2050"/>
         <source>Assistant is already processing a request.</source>
         <translation>Asistentas jau apdoroja užklausą.</translation>
     </message>
@@ -6050,37 +6140,37 @@ Serveris atsakė su klaida: %2</translation>
         <translation>Siunčiamas jūsų prašymas…</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1794"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2087"/>
         <source>Sending your request …</source>
         <translation>Siunčiamas jūsų prašymas  …</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1867"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2160"/>
         <source>No response yet. Please try again later.</source>
         <translation>Kol kas nėra atsakymo. Bandykite dar kartą vėliau.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1886"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2179"/>
         <source>No supported assistant task types were returned.</source>
         <translation>Nerasta jokių palaikomų asistento užduočių tipų.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1968"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2261"/>
         <source>Waiting for the assistant response…</source>
         <translation>Laukiama asistento atsakymo…</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1990"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2283"/>
         <source>Assistant request failed (%1).</source>
         <translation>Asistento užklausa nepavyko (%1).</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2065"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2358"/>
         <source>Quota is updated; %1 percent of the total space is used.</source>
         <translation>Kvota atnaujinama; naudojamas %1 procentas(-ų) visos vietos.</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2085"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2378"/>
         <source>Quota Warning - %1 percent or more storage in use</source>
         <translation>Kvotos įspėjimas – naudojama %1 procentai(-ų) ar daugiau saugyklos vietos</translation>
     </message>
@@ -6088,32 +6178,32 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>OCC::UserModel</name>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2502"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2810"/>
         <source>Confirm Account Removal</source>
         <translation>Patvirtinti paskyros šalinimą</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2503"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2811"/>
         <source>&lt;p&gt;Do you really want to remove the connection to the account &lt;i&gt;%1&lt;/i&gt;?&lt;/p&gt;&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; This will &lt;b&gt;not&lt;/b&gt; delete any files.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Ar tikrai norite pašalinti ryšį su paskyra &lt;i&gt;%1&lt;/i&gt;?&lt;/p&gt;&lt;p&gt;&lt;b&gt;Pastaba:&lt;/b&gt; Tai &lt;b&gt;neištrins&lt;/b&gt; jokių failų.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2507"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2815"/>
         <source>Remove connection</source>
         <translation>Šalinti ryšį</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2508"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2816"/>
         <source>Cancel</source>
         <translation>Atsisakyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2594"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2902"/>
         <source>Leave share</source>
         <translation>Palikti bendrinimą</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="2594"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="2902"/>
         <source>Remove account</source>
         <translation>Šalinti paskyrą</translation>
     </message>
@@ -6121,85 +6211,85 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>OCC::UserStatusSelectorModel</name>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="143"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="167"/>
         <source>Could not fetch predefined statuses. Make sure you are connected to the server.</source>
         <translation>Nepavyko gauti iš anksto nustatytų būsenų. Įsitikinkite, kad esate prisijungę prie serverio.</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="147"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="175"/>
         <source>Could not fetch status. Make sure you are connected to the server.</source>
         <translation>Nepavyko gauti būsenos. Įsitikinkite, kad esate prisijungę prie serverio.</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="151"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="183"/>
         <source>Status feature is not supported. You will not be able to set your status.</source>
         <translation>Būsenos funkcija nepalaikoma. Negalėsite nustatyti savo būsenos.</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="155"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="187"/>
         <source>Emojis are not supported. Some status functionality may not work.</source>
         <translation>Emociukų simboliai nepalaikomi. Kai kurios būsenos funkcijos gali neveikti.</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="159"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="194"/>
         <source>Could not set status. Make sure you are connected to the server.</source>
         <translation>Nepavyko nustatyti būsenos. Patikrinkite, ar esate prisijungę prie serverio.</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="163"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="198"/>
         <source>Could not clear status message. Make sure you are connected to the server.</source>
         <translation>Nepavyko ištrinti būsenos pranešimo. Patikrinkite, ar esate prisijungę prie serverio.</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="350"/>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="453"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="441"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="548"/>
         <source>Don&apos;t clear</source>
         <translation>Neišvalyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="353"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="444"/>
         <source>30 minutes</source>
         <translation>30 minučių</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="356"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="447"/>
         <source>1 hour</source>
         <translation>1 valanda</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="359"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="450"/>
         <source>4 hours</source>
         <translation>4 valandos</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="362"/>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="442"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="453"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="537"/>
         <source>Today</source>
         <translation>Šiandien</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="365"/>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="444"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="456"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="539"/>
         <source>This week</source>
         <translation>Šią savaitę</translation>
     </message>
     <message>
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="408"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="503"/>
         <source>Less than a minute</source>
         <translation>Mažiau nei minutė</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="411"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="506"/>
         <source>%n minute(s)</source>
         <translation><numerusform>%n minutė</numerusform><numerusform>%n minutės</numerusform><numerusform>%n minučių</numerusform><numerusform>%n minučių</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="414"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="509"/>
         <source>%n hour(s)</source>
         <translation><numerusform>%n valanda</numerusform><numerusform>%n valandos</numerusform><numerusform>%n valandų</numerusform><numerusform>%n valandų</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/userstatusselectormodel.cpp" line="417"/>
+        <location filename="../src/gui/userstatusselectormodel.cpp" line="512"/>
         <source>%n day(s)</source>
         <translation><numerusform>%n diena</numerusform><numerusform>%n dienos</numerusform><numerusform>%n dienų</numerusform><numerusform>%n dienų</numerusform></translation>
     </message>
@@ -6289,103 +6379,103 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>OCC::ownCloudGui</name>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="415"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="417"/>
         <source>Please sign in</source>
         <translation>Prisijunkite</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="506"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="508"/>
         <source>There are no sync folders configured.</source>
         <translation>Nėra sukonfigūruotų sinchronizavimo aplankų.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="396"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="398"/>
         <source>Disconnected from %1</source>
         <translation>Atsijungta nuo %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="282"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="284"/>
         <source>Unsupported Server Version</source>
         <translation>Nepalaikoma serverio versija</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="283"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="285"/>
         <source>The server on account %1 runs an unsupported version %2. Using this client with unsupported server versions is untested and potentially dangerous. Proceed at your own risk.</source>
         <translation>Paskyroje %1 esantis serveris naudoja nepalaikomą %2 versiją. Šio kliento naudojimas su nepalaikomomis serverio versijomis yra neišbandytas ir gali būti pavojingas. Tęskite savo rizika.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="295"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="297"/>
         <source>Terms of service</source>
         <translation>Paslaugų teikimo sąlygos</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="296"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="298"/>
         <source>Your account %1 requires you to accept the terms of service of your server. You will be redirected to %2 to acknowledge that you have read it and agrees with it.</source>
         <translation>Jūsų paskyra %1 reikalauja sutikti su serverio paslaugų teikimo sąlygomis. Būsite nukreipti į %2, kad patvirtintumėte, jog jas perskaitėte ir su jomis sutinkate.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="486"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="488"/>
         <source>%1: %2</source>
         <extracomment>Example text: &quot;Nextcloud: Syncing 25MB (3 minutes left)&quot; (%1 is the folder name to be synced, %2 a status message for that folder)</extracomment>
         <translation>%1: %2</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="490"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="492"/>
         <source>macOS VFS for %1: Sync is running.</source>
         <translation>macOS VFS, skirtas %1: Vykdomas sinchronizavimas.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="493"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="495"/>
         <source>macOS VFS for %1: Last sync was successful.</source>
         <translation>macOS VFS, skirtas %1: Paskutinis sinchronizavimas buvo sėkmingas.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="496"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="498"/>
         <source>macOS VFS for %1: A problem was encountered.</source>
         <translation>macOS VFS, skirtas %1: Iškilo problema.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="499"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="501"/>
         <source>macOS VFS for %1: An error was encountered.</source>
         <translation>macOS VFS, skirtas %1: Įvyko klaida.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="565"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="567"/>
         <source>Checking for changes in remote &quot;%1&quot;</source>
         <translation>Tikrinama, ar yra pokyčių nuotolinėje „%1“</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="568"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="570"/>
         <source>Checking for changes in local &quot;%1&quot;</source>
         <translation>Patikrinti, ar yra pokyčių vietiniame „%1“</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="851"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="853"/>
         <source>Internal link copied</source>
         <translation>Vidinė nuoroda nukopijuota</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="852"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="854"/>
         <source>The internal link has been copied to the clipboard.</source>
         <translation>Vidinė nuoroda buvo nukopijuota į iškarpinę.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="399"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="401"/>
         <source>Disconnected from accounts:</source>
         <translation>Atsijungta nuo paskyrų:</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="401"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="403"/>
         <source>Account %1: %2</source>
         <translation>Paskyra %1: %2</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="419"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="421"/>
         <source>Account synchronization is disabled</source>
         <translation>Paskyros sinchronizavimas išjungtas</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudgui.cpp" line="585"/>
+        <location filename="../src/gui/owncloudgui.cpp" line="587"/>
         <source>%1 (%2, %3)</source>
         <translation>%1 (%2, %3)</translation>
     </message>
@@ -6550,32 +6640,32 @@ Serveris atsakė su klaida: %2</translation>
         <translation>Nepavyko perkelti derinimo archyvo į pasirinktą vietą!</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="307"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="492"/>
         <source>Answer</source>
         <translation>Atsakymas</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1304"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1520"/>
         <source>You renamed %1</source>
         <translation>Jūs pervadinote %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1306"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1522"/>
         <source>You deleted %1</source>
         <translation>Jūs ištrynėte %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1308"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1524"/>
         <source>You created %1</source>
         <translation>Jūs sukūrėte %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1310"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1526"/>
         <source>You changed %1</source>
         <translation>Jūs pakeitėte %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/usermodel.cpp" line="1334"/>
+        <location filename="../src/gui/tray/usermodel.cpp" line="1550"/>
         <source>Synced %1</source>
         <translation>Sinchronizuota %1</translation>
     </message>
@@ -6974,22 +7064,22 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>SyncStatus</name>
     <message>
-        <location filename="../src/gui/tray/SyncStatus.qml" line="99"/>
+        <location filename="../src/gui/tray/SyncStatus.qml" line="101"/>
         <source>Sync now</source>
         <translation>Sinchronizuoti dabar</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/SyncStatus.qml" line="120"/>
+        <location filename="../src/gui/tray/SyncStatus.qml" line="124"/>
         <source>Resolve conflicts</source>
         <translation>Išspręsti konfliktus</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/SyncStatus.qml" line="133"/>
+        <location filename="../src/gui/tray/SyncStatus.qml" line="139"/>
         <source>Open browser</source>
         <translation>Atverti naršyklę</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/SyncStatus.qml" line="144"/>
+        <location filename="../src/gui/tray/SyncStatus.qml" line="150"/>
         <source>Open settings</source>
         <translation>Atverti nustatymus</translation>
     </message>
@@ -6997,12 +7087,12 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>TalkReplyTextField</name>
     <message>
-        <location filename="../src/gui/tray/TalkReplyTextField.qml" line="21"/>
+        <location filename="../src/gui/tray/TalkReplyTextField.qml" line="23"/>
         <source>Reply to …</source>
         <translation>Atsakyti ...</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/TalkReplyTextField.qml" line="57"/>
+        <location filename="../src/gui/tray/TalkReplyTextField.qml" line="59"/>
         <source>Send reply to chat message</source>
         <translation>Atsakyti į pokalbio žinutę</translation>
     </message>
@@ -7010,19 +7100,44 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>TrayAccountPopup</name>
     <message>
-        <location filename="../src/gui/tray/TrayAccountPopup.qml" line="216"/>
-        <source>Add account</source>
-        <translation>Pridėti paskyrą</translation>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="578"/>
+        <source>No apps available</source>
+        <translation>Programėlių nėra</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/TrayAccountPopup.qml" line="256"/>
-        <source>Settings</source>
-        <translation>Nustatymai</translation>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="618"/>
+        <source>Notifications</source>
+        <translation>Pranešimai</translation>
     </message>
     <message>
-        <location filename="../src/gui/tray/TrayAccountPopup.qml" line="296"/>
-        <source>Quit</source>
-        <translation>Išeiti</translation>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="640"/>
+        <source>Open</source>
+        <translation>Atverti</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="653"/>
+        <source>Recent activity</source>
+        <translation>Paskiausia veikla</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="660"/>
+        <source>No recent activity</source>
+        <translation>Pastaruoju metu veiklos nebuvo</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="678"/>
+        <source>More activity…</source>
+        <translation>Daugiau veiklos...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="709"/>
+        <source>Resolve: %1</source>
+        <translation>Sprendimas: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="716"/>
+        <source>User status</source>
+        <translation>Vartotojo būsena</translation>
     </message>
 </context>
 <context>
@@ -7057,6 +7172,11 @@ Serveris atsakė su klaida: %2</translation>
         <source>User group and local folders menu</source>
         <translation>Vartotojų grupių ir vietinių aplankų meniu</translation>
     </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="732"/>
+        <source>Local folder</source>
+        <translation>Vietinis aplankas</translation>
+    </message>
 </context>
 <context>
     <name>TrayWindowHeader</name>
@@ -7074,6 +7194,11 @@ Serveris atsakė su klaida: %2</translation>
         <location filename="../src/gui/tray/TrayWindowHeader.qml" line="142"/>
         <source>Open %1 in browser</source>
         <translation>Atverti %1 naršyklėje</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="749"/>
+        <source>Apps</source>
+        <translation>Programėlės</translation>
     </message>
 </context>
 <context>
@@ -7137,12 +7262,12 @@ Serveris atsakė su klaida: %2</translation>
     <message>
         <location filename="../src/gui/urischemehandler.cpp" line="123"/>
         <source>Could not handle link</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko apdoroti nuorodos</translation>
     </message>
     <message>
         <location filename="../src/gui/urischemehandler.cpp" line="191"/>
         <source>Adding another account is not allowed in this client.</source>
-        <translation type="unfinished"/>
+        <translation>Šioje programėlėje neleidžiama pridėti kitos paskyros.</translation>
     </message>
 </context>
 <context>
@@ -7196,32 +7321,32 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>UserStatusMessageView</name>
     <message>
-        <location filename="../src/gui/UserStatusMessageView.qml" line="40"/>
+        <location filename="../src/gui/UserStatusMessageView.qml" line="42"/>
         <source>Status message</source>
         <translation>Būsenos žinutė</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusMessageView.qml" line="116"/>
+        <location filename="../src/gui/UserStatusMessageView.qml" line="119"/>
         <source>What is your status?</source>
         <translation>Kokia jūsų būsena?</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusMessageView.qml" line="168"/>
+        <location filename="../src/gui/UserStatusMessageView.qml" line="174"/>
         <source>Clear status message after</source>
         <translation>Išvalyti būsenos žinutę po</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusMessageView.qml" line="205"/>
+        <location filename="../src/gui/UserStatusMessageView.qml" line="212"/>
         <source>Cancel</source>
         <translation>Atsisakyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusMessageView.qml" line="212"/>
+        <location filename="../src/gui/UserStatusMessageView.qml" line="219"/>
         <source>Clear</source>
         <translation>Išvalyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusMessageView.qml" line="221"/>
+        <location filename="../src/gui/UserStatusMessageView.qml" line="229"/>
         <source>Apply</source>
         <translation>Taikyti</translation>
     </message>
@@ -7229,49 +7354,138 @@ Serveris atsakė su klaida: %2</translation>
 <context>
     <name>UserStatusSetStatusView</name>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="42"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="44"/>
         <source>Online status</source>
         <translation>Prisijungimo būsena</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="51"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="54"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="210"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="222"/>
         <source>Online</source>
         <translation>Prisijungęs</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="61"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="65"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="212"/>
         <source>Away</source>
         <translation>Atsitraukęs</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="72"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="77"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="214"/>
         <source>Busy</source>
         <translation>Užimtas</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="82"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="88"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="216"/>
         <source>Do not disturb</source>
         <translation>Netrukdyti</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="83"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="89"/>
         <source>Mute all notifications</source>
         <translation>Išjungti visus pranešimus</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="94"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="101"/>
+        <location filename="../src/gui/trayaccountpopup_qt.cpp" line="218"/>
         <source>Invisible</source>
         <translation>Nematomas</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="95"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="102"/>
         <source>Appear offline</source>
         <translation>Atrodyti atsijungusiu</translation>
     </message>
     <message>
-        <location filename="../src/gui/UserStatusSetStatusView.qml" line="106"/>
+        <location filename="../src/gui/UserStatusSetStatusView.qml" line="113"/>
         <source>Status message</source>
         <translation>Būsenos žinutė</translation>
+    </message>
+</context>
+<context>
+    <name>UserStatusWindow</name>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="22"/>
+        <source>Online status</source>
+        <translation>Prisijungimo būsena</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="99"/>
+        <source>Online</source>
+        <translation>Prisijungęs</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="108"/>
+        <source>Away</source>
+        <translation>Atsitraukęs</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="118"/>
+        <source>Busy</source>
+        <translation>Užimtas</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="127"/>
+        <source>Do not disturb</source>
+        <translation>Netrukdyti</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="128"/>
+        <source>Mute all notifications</source>
+        <translation>Išjungti visus pranešimus</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="139"/>
+        <source>Invisible</source>
+        <translation>Nematomas</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="140"/>
+        <source>Appear offline</source>
+        <translation>Atrodyti atsijungusiu</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="156"/>
+        <source>Status message</source>
+        <translation>Būsenos žinutė</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="182"/>
+        <source>Choose emoji</source>
+        <translation>Pasirinkti emociuką</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="204"/>
+        <source>What is your status?</source>
+        <translation>Kokia jūsų būsena?</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="290"/>
+        <location filename="../src/gui/UserStatusWindow.qml" line="311"/>
+        <source>Clear status after</source>
+        <translation>Išvalyti būseną po</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="343"/>
+        <source>Clear status message</source>
+        <translation>Išvalyti būsenos žinutę</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/UserStatusWindow.qml" line="354"/>
+        <source>Set status message</source>
+        <translation>Nustatyti būsenos žinutę</translation>
+    </message>
+</context>
+<context>
+    <name>UserStatusWindowPredefinedStatusRow</name>
+    <message>
+        <location filename="../src/gui/UserStatusWindowPredefinedStatusRow.qml" line="30"/>
+        <source>%1, resets after %2</source>
+        <extracomment>%1 is the status text and %2 is a time string.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7348,6 +7562,14 @@ Serveris atsakė su klaida: %2</translation>
         <location filename="../src/common/checksums.cpp" line="298"/>
         <source>The downloaded file does not match the checksum, it will be resumed. &quot;%1&quot; != &quot;%2&quot;</source>
         <translation>Atsisiųsto failo kontrolinė suma nesutampa, atsisiuntimas bus tęsiamas. „%1“ != „%2“</translation>
+    </message>
+</context>
+<context>
+    <name>WindowAccountHeader</name>
+    <message>
+        <location filename="../src/gui/WindowAccountHeader.qml" line="63"/>
+        <source>Account avatar</source>
+        <translation>Paskyros avataras</translation>
     </message>
 </context>
 <context>
