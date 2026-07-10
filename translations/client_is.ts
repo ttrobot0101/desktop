@@ -1766,34 +1766,34 @@ gagnageymslur: </translation>
         <translation>Halda áfram</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="622"/>
+        <location filename="../src/gui/application.cpp" line="621"/>
         <source>%1 accounts</source>
         <comment>number of accounts imported</comment>
         <translation>%1 notandaaðgangar</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="623"/>
+        <location filename="../src/gui/application.cpp" line="622"/>
         <source>1 account</source>
         <translation>1 notandaaðgangur</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="625"/>
+        <location filename="../src/gui/application.cpp" line="624"/>
         <source>%1 folders</source>
         <comment>number of folders imported</comment>
         <translation>%1 möppur</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="626"/>
+        <location filename="../src/gui/application.cpp" line="625"/>
         <source>1 folder</source>
         <translation>1 mappa</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="628"/>
+        <location filename="../src/gui/application.cpp" line="627"/>
         <source>Legacy import</source>
         <translation>Eldri gerð innflutnings</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="629"/>
+        <location filename="../src/gui/application.cpp" line="628"/>
         <source>Imported %1 and %2 from a legacy desktop client.
 %3</source>
         <comment>number of accounts and folders imported. list of users.</comment>
@@ -1801,12 +1801,12 @@ gagnageymslur: </translation>
 %3</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="749"/>
+        <location filename="../src/gui/application.cpp" line="748"/>
         <source>Error accessing the configuration file</source>
         <translation>Villa við að nálgast stillingaskrána</translation>
     </message>
     <message>
-        <location filename="../src/gui/application.cpp" line="750"/>
+        <location filename="../src/gui/application.cpp" line="749"/>
         <source>There was an error while accessing the configuration file at %1. Please make sure the file can be accessed by your system account.</source>
         <translation>Það kom upp villa við að nálgast stillingaskrána á %1. Gakktu úr skugga um að
  kerfisaðgangurinn hafi heimild til að vinna með skrána.</translation>
@@ -4922,17 +4922,22 @@ niðurhals. Uppsetta útgáfan er %3.&lt;/p&gt;</translation>
         <translation>Fékk rangan HTTP-kóða frá þjóni. Átti von á 201, en fékk &quot;%1 %2&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemkdir.cpp" line="251"/>
+        <location filename="../src/libsync/propagateremotemkdir.cpp" line="216"/>
+        <source>Failed to create encrypted folder.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libsync/propagateremotemkdir.cpp" line="255"/>
         <source>Failed to encrypt a folder %1</source>
         <translation>Mistókst að dulrita möppuna %1</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemkdir.cpp" line="274"/>
+        <location filename="../src/libsync/propagateremotemkdir.cpp" line="278"/>
         <source>Error writing metadata to the database: %1</source>
         <translation>Villa við ritun lýsigagna í gagnagrunninn: %1</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemkdir.cpp" line="277"/>
+        <location filename="../src/libsync/propagateremotemkdir.cpp" line="281"/>
         <source>The file %1 is currently in use</source>
         <translation>Skráin %1 er núna í notkun</translation>
     </message>
