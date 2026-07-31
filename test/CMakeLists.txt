@@ -97,10 +97,15 @@ nextcloud_add_test(Theme)
 nextcloud_add_test(IconUtils)
 nextcloud_add_test(NotificationSoundPlayer)
 nextcloud_add_test(SetUserStatusDialog)
+nextcloud_add_test(TrayAccountMenuPolicy)
 nextcloud_add_test(UnifiedSearchListmodel)
 nextcloud_add_test(ActivityListModel)
 nextcloud_add_test(SortedActivityListModel)
 nextcloud_add_test(ActivityData)
+add_test(NAME ActivityFileMenuQmlTest
+    COMMAND Qt6::qmltestrunner
+        -input "${CMAKE_CURRENT_SOURCE_DIR}/qml/activityfilemenu/testactivityfilemenu.qml"
+)
 nextcloud_add_test(TalkReply)
 nextcloud_add_test(LockFile)
 nextcloud_add_test(ShareModel)
