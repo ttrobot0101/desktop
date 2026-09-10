@@ -197,7 +197,6 @@ ownCloudGui::ownCloudGui(Application *parent)
     qRegisterMetaType<OCC::ActivityList>("ActivityList");
 
     qmlRegisterSingletonInstance("com.nextcloud.desktopclient", 1, 0, "UserModel", UserModel::instance());
-    qmlRegisterSingletonInstance("com.nextcloud.desktopclient", 1, 0, "UserAppsModel", UserAppsModel::instance());
     qmlRegisterSingletonInstance("com.nextcloud.desktopclient", 1, 0, "TrayAccountAppsModel", TrayAccountAppsModel::instance());
     qmlRegisterSingletonInstance("com.nextcloud.desktopclient", 1, 0, "Theme", Theme::instance());
     qmlRegisterSingletonInstance("com.nextcloud.desktopclient", 1, 0, "Systray", Systray::instance());
@@ -422,6 +421,7 @@ void ownCloudGui::slotComputeOverallSyncStatus()
         QStringList messages;
         messages.append(tr("Disconnected from accounts:"));
         for (const auto &accountState : std::as_const(problemAccounts)) {
+            //: %1 is the account display name. %2 is the account connection status.
             QString message = tr("Account %1: %2").arg(accountState->account()->displayName(), accountState->stateString(accountState->state()));
             if (!accountState->connectionErrors().empty()) {
                 message += QLatin1String("\n");
@@ -606,6 +606,7 @@ void ownCloudGui::slotUpdateProgress(const QString &folder, const ProgressInfo &
 
         QString kindStr = Progress::asResultString(progress._lastCompletedItem);
         QString timeStr = QTime::currentTime().toString("hh:mm");
+        //: %1 is the file name. %2 is the sync result. %3 is the current time.
         QString actionText = tr("%1 (%2, %3)").arg(progress._lastCompletedItem._file, kindStr, timeStr);
         auto *action = new QAction(actionText, this);
         Folder *f = FolderMan::instance()->folder(folder);
