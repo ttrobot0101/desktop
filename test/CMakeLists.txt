@@ -95,6 +95,7 @@ if (NOT WIN32)
     nextcloud_add_test(FolderWatcher)
 endif()
 
+nextcloud_add_test(InvalidFilenameDialog)
 nextcloud_add_test(Capabilities)
 nextcloud_add_test(UnifiedSharing)
 target_link_libraries(UnifiedSharingTest PRIVATE nextcloudGuiSharing)
@@ -255,6 +256,7 @@ nextcloud_add_test(FolderMan)
 nextcloud_add_test(ForceSyncNow)
 nextcloud_add_test(RemoteWipe)
 nextcloud_add_test(Migration)
+nextcloud_add_test(ManagedSettings)
 
 if(NOT BUILD_FILE_PROVIDER_MODULE)
     # the File Provider build crashes this test in CI for some reason
