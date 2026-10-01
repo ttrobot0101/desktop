@@ -627,38 +627,46 @@ private Q_SLOTS:
 
     // A server default must not reach the application proxy, which every account shares.
     // A value written by an earlier version at the top level must not outrank a later server default.
-    void testSetConfigClearsTheLegacyTopLevelValue()
+    void testUserValueOutranksServerDefaultUntilCleared()
     {
         QTemporaryDir dir;
         ConfigFile config;
         config.setConfDir(dir.path());
 
-        {
-            QSettings legacy(config.configFile(), QSettings::IniFormat);
-            legacy.setValue(u"confirmExternalStorage"_s, true);
-            legacy.sync();
-        }
-        QCOMPARE(config.sourceOf(u"confirmExternalStorage"_s), SettingSourceType::UserConfig);
-
         QVERIFY(config.setConfig(u"confirmExternalStorage"_s, false));
 
-        QSettings written(config.configFile(), QSettings::IniFormat);
-        QVERIFY(!written.contains(u"confirmExternalStorage"_s));
-        QCOMPARE(config.getConfig<bool>(u"confirmExternalStorage"_s), false);
-
-        // Clearing the choice of the user leaves nothing behind to shadow a server default.
-        {
-            QSettings groupValue(config.configFile(), QSettings::IniFormat);
-            groupValue.beginGroup(config.defaultConnectionGroupName());
-            groupValue.remove(u"confirmExternalStorage"_s);
-            groupValue.sync();
-        }
         ServerManagedSettings settings;
         settings.defaults = QVariantMap{{u"confirmExternalStorage"_s, true}};
         config.setServerManagedSettings(settings);
 
+        QCOMPARE(config.sourceOf(u"confirmExternalStorage"_s), SettingSourceType::UserConfig);
+        QCOMPARE(config.getConfig<bool>(u"confirmExternalStorage"_s), false);
+
+        {
+            QSettings raw(config.configFile(), QSettings::IniFormat);
+            raw.remove(u"confirmExternalStorage"_s);
+            raw.beginGroup(config.defaultConnectionGroupName());
+            raw.remove(u"confirmExternalStorage"_s);
+            raw.sync();
+        }
+
         QCOMPARE(config.sourceOf(u"confirmExternalStorage"_s), SettingSourceType::ServerDefault);
         QCOMPARE(config.getConfig<bool>(u"confirmExternalStorage"_s), true);
+    }
+
+    // Older clients read the [General] section after a downgrade.
+    void testSetConfigCopiesValueToGeneralForDowngrade()
+    {
+        QTemporaryDir dir;
+        ConfigFile config;
+        config.setConfDir(dir.path());
+
+        QVERIFY(config.setConfig(u"autoUpdateCheck"_s, false));
+
+        QSettings raw(config.configFile(), QSettings::IniFormat);
+        QVERIFY(raw.contains(u"autoUpdateCheck"_s));
+        QCOMPARE(raw.value(u"autoUpdateCheck"_s).toBool(), false);
+        QCOMPARE(config.getConfig<bool>(u"autoUpdateCheck"_s), false);
     }
 
     void testServerProxyDefaultAppliesToItsAccountButNotTheApplicationProxy()
@@ -720,6 +728,19 @@ private Q_SLOTS:
         QVERIFY(config.macFileProviderModeEnabled());
     }
 
+    void testFileProviderVfsEnforcedOffNotifiedRoundTrips()
+    {
+        QTemporaryDir dir;
+        ConfigFile config;
+        config.setConfDir(dir.path());
+
+        QVERIFY(!config.fileProviderVfsEnforcedOffNotified());
+        config.setFileProviderVfsEnforcedOffNotified(true);
+        QVERIFY(config.fileProviderVfsEnforcedOffNotified());
+        config.setFileProviderVfsEnforcedOffNotified(false);
+        QVERIFY(!config.fileProviderVfsEnforcedOffNotified());
+    }
+
     void testEnforcedProxyFieldReplacesOnlyThatField()
     {
         const auto account = createAccountWithNetworkAccessManager();
@@ -737,27 +758,25 @@ private Q_SLOTS:
         QCOMPARE(account->accountProxyPort(), 1111);
     }
 
-    void testManagedProxyDefaultAppliesOnlyWhileFollowingSystemProxy_data()
+    void testManagedProxyDefaultDoesNotOverrideExistingAccount_data()
     {
         QTest::addColumn<int>("accountProxyType");
-        QTest::addColumn<int>("expectedProxyType");
 
-        QTest::newRow("follows system proxy") << int(QNetworkProxy::DefaultProxy) << int(QNetworkProxy::HttpProxy);
-        QTest::newRow("manual proxy") << int(QNetworkProxy::Socks5Proxy) << int(QNetworkProxy::Socks5Proxy);
-        QTest::newRow("no proxy") << int(QNetworkProxy::NoProxy) << int(QNetworkProxy::NoProxy);
+        QTest::newRow("follows system proxy") << int(QNetworkProxy::DefaultProxy);
+        QTest::newRow("manual proxy") << int(QNetworkProxy::Socks5Proxy);
+        QTest::newRow("no proxy") << int(QNetworkProxy::NoProxy);
     }
 
-    void testManagedProxyDefaultAppliesOnlyWhileFollowingSystemProxy()
+    void testManagedProxyDefaultDoesNotOverrideExistingAccount()
     {
         QFETCH(int, accountProxyType);
-        QFETCH(int, expectedProxyType);
 
         const auto account = createAccountWithNetworkAccessManager();
         account->setProxyType(static_cast<QNetworkProxy::ProxyType>(accountProxyType));
 
         account->applyManagedProxySettings(managedProxyFields(false, int(QNetworkProxy::HttpProxy), u"proxy.example.com"_s, 8080));
 
-        QCOMPARE(int(account->proxyType()), expectedProxyType);
+        QCOMPARE(int(account->proxyType()), accountProxyType);
         QCOMPARE(int(account->accountProxyType()), accountProxyType);
         QVERIFY(!account->proxySettingsAreManaged());
     }
@@ -849,6 +868,25 @@ private Q_SLOTS:
         account->setProxyType(QNetworkProxy::DefaultProxy);
 
         QCOMPARE(ClientProxy::accountProxyMode(*account), ClientProxy::AccountProxyMode::SystemProxy);
+    }
+
+    void testAccountProxyModeUsesAccountProxyForItsOwnProxy_data()
+    {
+        QTest::addColumn<int>("accountProxyType");
+
+        QTest::newRow("http proxy") << int(QNetworkProxy::HttpProxy);
+        QTest::newRow("socks5 proxy") << int(QNetworkProxy::Socks5Proxy);
+        QTest::newRow("no proxy") << int(QNetworkProxy::NoProxy);
+    }
+
+    void testAccountProxyModeUsesAccountProxyForItsOwnProxy()
+    {
+        QFETCH(int, accountProxyType);
+
+        const auto account = createAccountWithNetworkAccessManager();
+        account->setProxyType(static_cast<QNetworkProxy::ProxyType>(accountProxyType));
+
+        QCOMPARE(ClientProxy::accountProxyMode(*account), ClientProxy::AccountProxyMode::AccountProxy);
     }
 
     void testSourceLabelUsesRequestedSetting()

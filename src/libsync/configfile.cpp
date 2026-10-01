@@ -52,7 +52,6 @@ static constexpr char forceSyncIntervalC[] = "forceSyncInterval";
 static constexpr char fullLocalDiscoveryIntervalC[] = "fullLocalDiscoveryInterval";
 static constexpr char notificationRefreshIntervalC[] = "notificationRefreshInterval";
 static constexpr char deleteFilesThresholdC[] = "deleteFilesThreshold";
-static constexpr char skipUpdateCheckC[] = "skipUpdateCheck";
 static constexpr char updateCheckIntervalC[] = "updateCheckInterval";
 static constexpr char updateSegmentC[] = "updateSegment";
 static constexpr char overrideServerUrlC[] = "overrideServerUrl";
@@ -72,6 +71,7 @@ static constexpr char showExperimentalOptionsC[] = "showExperimentalOptions";
 static constexpr char clientPreviousVersionC[] = "clientPreviousVersion";
 static constexpr char fileProviderDomainsAppSandboxMigrationCompletedC[] = "fileProviderDomainsAppSandboxMigrationCompleted";
 static constexpr char macFileProviderModeEnabledC[] = "macFileProviderModeEnabled";
+static constexpr char fileProviderVfsEnforcedOffNotifiedC[] = "fileProviderVfsEnforcedOffNotified";
 static constexpr char fileProviderDomainUuidsGroupC[] = "FileProviderDomainUuids";
 static constexpr char fileProviderAccountIdsGroupC[] = "FileProviderAccountIds";
 
@@ -718,11 +718,9 @@ bool ConfigFile::setConfig(const QString &name, const QVariant &value, const QSt
     }
 
     QSettings settings(configFile(), QSettings::IniFormat);
-    // Drop the copy earlier versions kept at the top level, so it cannot shadow a server default.
-    settings.remove(name);
-    if (!groupName.isEmpty()) {
-        settings.beginGroup(groupName);
-    }
+    // Copy into the [General] section for older clients after a downgrade.
+    settings.setValue(name, value);
+    settings.beginGroup(groupName);
     settings.setValue(name, value);
     settings.sync();
     return true;
@@ -1527,6 +1525,19 @@ void ConfigFile::setMacFileProviderModeEnabled(const bool enabled)
 {
     QSettings settings(configFile(), QSettings::IniFormat);
     settings.setValue(macFileProviderModeEnabledC, enabled);
+    settings.sync();
+}
+
+bool ConfigFile::fileProviderVfsEnforcedOffNotified() const
+{
+    QSettings settings(configFile(), QSettings::IniFormat);
+    return settings.value(fileProviderVfsEnforcedOffNotifiedC, false).toBool();
+}
+
+void ConfigFile::setFileProviderVfsEnforcedOffNotified(const bool notified)
+{
+    QSettings settings(configFile(), QSettings::IniFormat);
+    settings.setValue(fileProviderVfsEnforcedOffNotifiedC, notified);
     settings.sync();
 }
 
